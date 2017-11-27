@@ -3,17 +3,14 @@ package sopra.hopital.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.SequenceGenerator;
-
 import com.fasterxml.jackson.annotation.JsonView;
 
 
 @Entity
-@SequenceGenerator(name = "utilisateur_sequence")
 public class Utilisateur {
 	
 	@Column(name = "id")
-	@GeneratedValue()
+	@GeneratedValue
 	@JsonView(Views.Common.class)
 	private Long id;
 	
