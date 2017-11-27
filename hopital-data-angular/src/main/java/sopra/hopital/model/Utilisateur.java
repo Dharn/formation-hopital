@@ -1,16 +1,30 @@
 package sopra.hopital.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import sopra.formation.model.Views;
+
 @Entity
+
 public class Utilisateur {
 	
+	@Column(name = "id")
+	@JsonView(Views.Common.class)
 	private Long id;
 	
+	@Column(name = "role")
+	@JsonView(Views.Common.class)
 	private String role;
 	
+	@Column(name = "login")
+	@JsonView(Views.Common.class)
 	private String login;
 	
+	@Column(name = "password")
+	@JsonView(Views.Common.class)
 	private String motDePasse;
 
 	public Utilisateur() {
