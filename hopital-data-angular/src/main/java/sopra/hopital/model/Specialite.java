@@ -43,4 +43,61 @@ public class Specialite {
 	public Specialite() {
 		
 	}
+	
+	public Specialite(String intitule) {
+		super();
+		this.intitule = intitule;
+	}
+
+	public Specialite(String intitule, List<SalleSpecialite> listeSalleSpecialite,
+			List<MedecinSpecialite> listeMedecinSpecialite) {
+		super();
+		this.intitule = intitule;
+		this.listeSalleSpecialite = listeSalleSpecialite;
+		this.listeMedecinSpecialite = listeMedecinSpecialite;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
+	public String getIntitule() {
+		return intitule;
+	}
+
+	public void setIntitule(String intitule) {
+		this.intitule = intitule;
+	}
+
+	public List<SalleSpecialite> getListeSalleSpecialite() {
+		return listeSalleSpecialite;
+	}
+
+	public void setListeSalleSpecialite(List<SalleSpecialite> listeSalleSpecialite) {
+		this.listeSalleSpecialite = listeSalleSpecialite;
+	}
+
+	public List<MedecinSpecialite> getListeMedecinSpecialite() {
+		return listeMedecinSpecialite;
+	}
+
+	public void setListeMedecinSpecialite(List<MedecinSpecialite> listeMedecinSpecialite) {
+		this.listeMedecinSpecialite = listeMedecinSpecialite;
+	}
+	
+	
+	
+	
 }
