@@ -6,16 +6,30 @@ public class Views {
 
 	}
 	
-	public static class Secretaire {
+	public static class Secretaire extends Common{
 
 	}
 	
-	public static class Medecin {
+	public static class Medecin extends Common{
 
 	}
-	public static class Utilisateur {
+	public static class Utilisateur extends Common{
+
+	}
+	public static class Disponibilite extends Common{
+
+	}
+	public static class Consultation extends Common{
 
 	}
 	
+	public static class Patient extends Common{
 
+	}
+	public static class Salle extends Common{
+
+	}
+	public static class Specialite extends Common{
+
+	}
 }
