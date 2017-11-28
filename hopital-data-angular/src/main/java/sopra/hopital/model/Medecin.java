@@ -54,7 +54,7 @@ public class Medecin {
 	private Boolean cmu;
 	
 	@ManyToOne
-	@JoinColumn(name = "medecin_id")
+	@JoinColumn(name = "secretaire_id")
 	@JsonView(Views.Common.class)
 	private Secretaire secretaire;
 	
