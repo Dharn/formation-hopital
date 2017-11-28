@@ -1,7 +1,37 @@
 <meta charset="UTF-8">
+<div>
+	<table class="table">
+		<tr>
+			<th>Medecin</th>
+			<th>dtDebut</th>
+			<th>dtFin</th>
 
-<div class="w3-sidebar w3-bar-block" style="width:25%">
+			<th></th>
+			<th></th>
+		</tr>
+		<tr ng-repeat="diponibilite in diponibiliteCtrl.diponibilites">
+			<td>{{diponibilite.medecin}}</td>
+			<td>{{diponibilite.dtDebut}}</td>
+			<td>{{diponibilite.dtFin}}</td>
+>
 
+			<td><button class='btn btn-success btn-sm'
+					ng-click="diponibiliteCtrl.edit(diponibilite.id)">
+					<span class='glyphicon glyphicon-pencil'></span>
+				</button></td>
+			<td><button class='btn btn-danger btn-sm'
+					ng-click="diponibiliteCtrl.remove(diponibilite.id)">
+					<span class='glyphicon glyphicon-trash'></span>
+				</button></td>
+		</tr>
+		<tr>
+			<td colspan="5"><button class='btn btn-success btn-sm'
+					ng-click="diponibiliteCtrl.add()">
+					<span class='glyphicon glyphicon-plus'></span>
+				</button></td>
+		</tr>
+	</table>
+	
 	<div class="panel panel-default" style="margin-top: 20px"
 		ng-show="disponibiliteCtrl.disponibilite">
 		<div class="panel-heading">Edition de la disponibilité</div>
@@ -33,10 +63,3 @@
 		</div>
 	</div>
 </div>
-<div>
-<!-- planning mois -->
-</div>
-<div class="w3-sidebar w3-bar-block" style="width:25%;right:0">
-<!-- planning jour -->
-</div>
-
