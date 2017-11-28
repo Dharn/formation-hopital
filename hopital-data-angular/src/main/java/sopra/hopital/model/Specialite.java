@@ -50,8 +50,8 @@ public class Specialite {
 			List<MedecinSpecialite> listeMedecinSpecialite) {
 		super();
 		this.intitule = intitule;
-		this.listeSalleSpecialite = listeSalleSpecialite;
-		this.listeMedecinSpecialite = listeMedecinSpecialite;
+		this.salleSpecialites = listeSalleSpecialite;
+		this.medecinSpecialites = listeMedecinSpecialite;
 	}
 
 	public Integer getId() {
@@ -79,19 +79,19 @@ public class Specialite {
 	}
 
 	public List<SalleSpecialite> getListeSalleSpecialite() {
-		return listeSalleSpecialite;
+		return salleSpecialites;
 	}
 
 	public void setListeSalleSpecialite(List<SalleSpecialite> listeSalleSpecialite) {
-		this.listeSalleSpecialite = listeSalleSpecialite;
+		this.salleSpecialites = listeSalleSpecialite;
 	}
 
 	public List<MedecinSpecialite> getListeMedecinSpecialite() {
-		return listeMedecinSpecialite;
+		return medecinSpecialites;
 	}
 
 	public void setListeMedecinSpecialite(List<MedecinSpecialite> listeMedecinSpecialite) {
-		this.listeMedecinSpecialite = listeMedecinSpecialite;
+		this.medecinSpecialites = listeMedecinSpecialite;
 	}
 	
 	
