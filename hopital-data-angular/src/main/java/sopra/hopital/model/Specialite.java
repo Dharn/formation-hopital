@@ -24,9 +24,11 @@ public class Specialite {
 	
 	@Version
 	@Column(name="version")
+	@JsonView(Views.Common.class)
 	private int version;
 	
 	@Column(name="intitule")
+	@JsonView(Views.Common.class)
 	private String intitule;
 	
 	@OneToMany(mappedBy = "specialite")
