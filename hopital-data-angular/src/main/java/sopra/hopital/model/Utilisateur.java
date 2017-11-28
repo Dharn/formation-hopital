@@ -34,6 +34,8 @@ public class Utilisateur {
 	@Column(name = "password")
 	@JsonView(Views.Common.class)
 	private String motDePasse;
+	
+	private Medecin medecin;
 
 	public Utilisateur() {
 		super();
@@ -76,6 +78,16 @@ public class Utilisateur {
 	public void setVersion(int version) {
 		this.version = version;
 	}
+
+	public Medecin getMedecin() {
+		return medecin;
+	}
+
+	public void setMedecin(Medecin medecin) {
+		this.medecin = medecin;
+	}
+	
+	
 	
 	
 	
