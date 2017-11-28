@@ -25,7 +25,7 @@ public class Utilisateur {
 	
 	@Column(name = "role")
 	@JsonView(Views.Common.class)
-	private String role;
+	private Role role;
 	
 	@Column(name = "login")
 	@JsonView(Views.Common.class)
@@ -52,13 +52,6 @@ public class Utilisateur {
 		this.id = id;
 	}
 
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
 
 	public String getLogin() {
 		return login;
