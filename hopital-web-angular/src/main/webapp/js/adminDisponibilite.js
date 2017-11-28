@@ -18,6 +18,8 @@
 
 								self.medecins = [];
 =======
+								
+								self.medecinlist = [];
 >>>>>>> 4f640c487129d0e01f989f65197573583500cfaf
 
 								self.list = function() {
@@ -32,6 +34,17 @@
 								};
 <<<<<<< HEAD
 =======
+								
+								self.medecinlist = function(idMedecin) {
+									$http({
+										method : 'GET',
+										url : 'api/disponibilites/medecin=' + idMedecin
+									}).then(function success(response) {
+										self.disponibilites = response.data;
+									}, function error(response) {
+
+									});
+								};
 >>>>>>> 4f640c487129d0e01f989f65197573583500cfaf
 
 								self.add = function() {
@@ -43,6 +56,10 @@
 
 								self.edit = function(convention, code) {
 =======
+									self.listdisponibilites();
+								};
+
+								self.edit = function(id) {
 >>>>>>> 4f640c487129d0e01f989f65197573583500cfaf
 									self.ajout = false;
 									self.disponibiliteForm.$setPristine();
@@ -55,6 +72,10 @@
 										self.disponibilite = response.data;
 										self.listMedecins();
 =======
+												url : 'api/disponibilites/' + id
+											}).then(function success(response) {
+										self.disponibilite = response.data;
+										self.listdisponibilites();
 >>>>>>> 4f640c487129d0e01f989f65197573583500cfaf
 									}, function error(response) {
 
@@ -91,6 +112,9 @@
 									$http(
 											{
 												method : 'DELETE',
+
+												url : 'api/disponibilites/' + id
+
 											}).then(function success(response) {
 										self.list();
 									}, function error(response) {
@@ -120,6 +144,7 @@
 								self.list();
 							},
 							controllerAs : "disponibiliteCtrl"
+
 						};
 					});
 })();
