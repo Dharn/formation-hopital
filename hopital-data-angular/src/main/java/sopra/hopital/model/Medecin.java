@@ -31,6 +31,7 @@ public class Medecin {
 	@Column(name="version")
 	private int version;
 	
+
 	@Column(name="nom")
 	@JsonView(Views.Common.class)
 	private String nom;
@@ -75,6 +76,10 @@ public class Medecin {
 	
 	
 
+	public Medecin() {
+		super();
+	}
+	
 	public Integer getId() {
 		return id;
 	}
