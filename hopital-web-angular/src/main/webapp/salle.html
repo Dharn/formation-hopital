@@ -1,31 +1,63 @@
 <meta charset="UTF-8">
-<div class="panel panel-default" style="margin-top: 20px"
-	ng-show="connexionCtrl.eleve">
-	<div class="panel-heading">Connexion !</div>
-	<div class="panel-body">
-		<form name="connexionCtrl.connexionForm"
-			ng-submit="connexionCtrl.connexionForm.$valid && connexionCtrl.connect()"
-			novalidate>
-
-			<div class="form-group">
-				<label for="electrique">Session</label>
-				 <input type="radio" class="form-control" style="width: 400px" ng-model="connexionCtrl" value="ADMIN" />ADMIN
-				 <input type="radio" class="form-control" style="width: 400px" ng-model="connexionCtrl" value="SECRETAIRE" />SECRETAIRE
-				 <input type="radio" class="form-control" style="width: 400px" ng-model="connexionCtrl" value="MEDECIN" />MEDECIN
-			</div>
-			<div class="form-group">
-				<label for="login">Login</label> <input type="text"
-					class="form-control" style="width: 400px"
-					ng-model="connexionCtrl" required />
-			</div>
-			<div class="form-group">
-				<label for="mdp">Mot De Passe</label> <input type="password"
-					class="form-control" style="width: 400px"
-					ng-model="connexionCtrl" required />
-			</div>
-			<button class="btn btn-success" type="submit">
-				<span class="glyphicon glyphicon-ok"></span>
-			</button>
-		</form>
+<div>
+	<table class="table">
+		<tr>
+			<th>Numéro</th>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>
+		<tr>
+			<td colspan="4"><button class='btn btn-success btn-sm'
+					ng-click="salleCtrl.add()">
+					<span class='glyphicon glyphicon-plus'></span>
+				</button></td>
+		</tr>
+		<tr ng-repeat="salle in salleCtrl.salles">
+			<td>{{salle.numero}}</td>
+			<td><button class='btn btn-success btn-sm'
+					ng-click="salleCtrl.show(salle.id)">
+					<span class='glyphicon glyphicon-search'></span>
+				</button></td>
+			<td><button class='btn btn-success btn-sm'
+					ng-click="salleCtrl.edit(salle.id)">
+					<span class='glyphicon glyphicon-pencil'></span>
+				</button></td>
+			<td><button class='btn btn-danger btn-sm'
+					ng-click="salleCtrl.remove(salle.id)">
+					<span class='glyphicon glyphicon-trash'></span>
+				</button></td>
+		</tr>
+		
+	</table>
+	
+	<div class="panel panel-default" style="margin-top: 20px"
+		ng-show="salleCtrl.salle">
+		<div class="panel-heading">Edition d'une salle</div>
+		<div class="panel-body">
+			<form name="salleCtrl.salleForm"
+				ng-submit="salleCtrl.salleForm.$valid && salleCtrl.save()" novalidate>
+				<input type="hidden" ng-model="salleCtrl.salle.id" /> <input
+					type="hidden" ng-model="salleCtrl.salle.version" />
+				<div class="form-group">
+					<label for="numero">Numéro</label> <input type="number"
+						class="form-control" style="width: 400px"
+						ng-model="salleCtrl.salle.numero" required />
+				</div>
+				
+				<div class="form-group">
+					<label for="specialite">Spécialités</label> 
+					<select cmultiple lass="form-control" style="width: 400px" ng-model="salleCtrl.salle.salleSpecialites.id" ng-options="salleSpecialites.id as salleSpecialites.id.specialite.intitule for salleSpecialites in salleCtrl.salleSpecialites">
+					</select>
+				</div>
+				
+				<button class="btn btn-success" type="submit">
+					<span class="glyphicon glyphicon-ok"></span>
+				</button>
+				<button class="btn btn-warning" ng-click="salleCtrl.cancel()">
+					<span class="glyphicon glyphicon-arrow-left"></span>
+				</button>
+			</form>
+		</div>
 	</div>
 </div>

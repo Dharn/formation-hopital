@@ -82,6 +82,19 @@
 					self.formation = null;
 				};
 				
+				self.show = function(){
+					$http({
+						method : 'GET', 
+						url : 'api/patients'+id
+						
+					}).then(function success(response){
+						self.patient = response.data;
+					}, function error(response){
+						
+					});
+					
+				};
+				
 				self.list();
 				
 				

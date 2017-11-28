@@ -1,31 +1,101 @@
 <meta charset="UTF-8">
-<div class="panel panel-default" style="margin-top: 20px"
-	ng-show="connexionCtrl.eleve">
-	<div class="panel-heading">Connexion !</div>
-	<div class="panel-body">
-		<form name="connexionCtrl.connexionForm"
-			ng-submit="connexionCtrl.connexionForm.$valid && connexionCtrl.connect()"
-			novalidate>
-
-			<div class="form-group">
-				<label for="electrique">Session</label>
-				 <input type="radio" class="form-control" style="width: 400px" ng-model="connexionCtrl" value="ADMIN" />ADMIN
-				 <input type="radio" class="form-control" style="width: 400px" ng-model="connexionCtrl" value="SECRETAIRE" />SECRETAIRE
-				 <input type="radio" class="form-control" style="width: 400px" ng-model="connexionCtrl" value="MEDECIN" />MEDECIN
-			</div>
-			<div class="form-group">
-				<label for="login">Login</label> <input type="text"
-					class="form-control" style="width: 400px"
-					ng-model="connexionCtrl" required />
-			</div>
-			<div class="form-group">
-				<label for="mdp">Mot De Passe</label> <input type="password"
-					class="form-control" style="width: 400px"
-					ng-model="connexionCtrl" required />
-			</div>
-			<button class="btn btn-success" type="submit">
-				<span class="glyphicon glyphicon-ok"></span>
-			</button>
-		</form>
+<div>
+	<table class="table">
+		<tr>
+			<th>Nom</th>
+			<th>Prénom</th>
+			<th>N° de sécurité sociale</th>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>
+		<tr>
+			<td colspan="6"><button class='btn btn-success btn-sm'
+					ng-click="patientCtrl.add()">
+					<span class='glyphicon glyphicon-plus'></span>
+				</button></td>
+		</tr>
+		<tr ng-repeat="patient in patientCtrl.patients">
+			<td>{{patient.nom}}</td>
+			<td>{{patient.prenom}}</td>
+			<td>{{patient.securiteSociale}}</td>
+			<td><button class='btn btn-success btn-sm'
+					ng-click="patientCtrl.show(patient.id)">
+					<span class='glyphicon glyphicon-search'></span>
+				</button></td>
+			<td><button class='btn btn-success btn-sm'
+					ng-click="patientCtrl.edit(patient.id)">
+					<span class='glyphicon glyphicon-pencil'></span>
+				</button></td>
+			<td><button class='btn btn-danger btn-sm'
+					ng-click="patientCtrl.remove(patient.id)">
+					<span class='glyphicon glyphicon-trash'></span>
+				</button></td>
+		</tr>
+		
+	</table>
+	
+	<div class="panel panel-default" style="margin-top: 20px"
+		ng-show="patientCtrl.patient">
+		<div class="panel-heading">Edition d'un patient</div>
+		<div class="panel-body">
+			<form name="patientCtrl.patientForm"
+				ng-submit="patientCtrl.patientForm.$valid && patientCtrl.save()" novalidate>
+				<input type="hidden" ng-model="patientCtrl.patient.id" /> <input
+					type="hidden" ng-model="patientCtrl.patient.version" />
+				<div class="form-group">
+					<label for="nom">Nom</label> <input type="text"
+						class="form-control" style="width: 400px"
+						ng-model="patientCtrl.patient.nom" required />
+				</div>
+				<div class="form-group">
+					<label for="prenom">Prénom</label> <input type="text"
+						class="form-control" style="width: 400px"
+						ng-model="patientCtrl.patient.prenom" required />
+				</div>
+				<div class="form-group">
+					<label for="rue">Rue</label> <input type="text"
+						class="form-control" style="width: 400px"
+						ng-model="patientCtrl.patient.rue" required />
+				</div>
+				<div class="form-group">
+					<label for="codePostal">Code postal</label> <input type="text"
+						class="form-control" style="width: 400px"
+						ng-model="patientCtrl.patient.codePostal" required />
+				</div>
+				<div class="form-group">
+					<label for="ville">Ville</label> <input type="text"
+						class="form-control" style="width: 400px"
+						ng-model="patientCtrl.patient.ville" required />
+				</div>
+				<div class="form-group">
+					<label for="ville">Pays</label> <input type="text"
+						class="form-control" style="width: 400px"
+						ng-model="patientCtrl.patient.ville" required />
+				</div>
+				<div class="form-group">
+					<label for="courriel">E-Mail</label> <input type="email"
+						class="form-control" style="width: 400px"
+						ng-model="patientCtrl.patient.courriel" required />
+				</div>
+				<div class="form-group">
+					<label for="telephone">N° de Téléphone</label> <input type="text"
+						class="form-control" style="width: 400px"
+						ng-model="patientCtrl.patient.telephone" required />
+				</div>
+				<div class="form-group">
+					<label for=securiteSociale>N° de sécurité sociale</label> <input type="number"
+						class="form-control" style="width: 400px"
+						ng-model="patientCtrl.patient.securiteSociale" required />
+				</div>
+				
+				<button class="btn btn-success" type="submit">
+					<span class="glyphicon glyphicon-ok"></span>
+				</button>
+				<button class="btn btn-warning" ng-click="patientCtrl.cancel()">
+					<span class="glyphicon glyphicon-arrow-left"></span>
+				</button>
+			</form>
+		</div>
 	</div>
 </div>

@@ -9,6 +9,7 @@
 				var self = this;
 				self.patients=[];
 				self.patient=null;
+				self.salleSpecialites = [];
 				
 				self.list = function(){
 					$http({
@@ -26,6 +27,7 @@
 				self.add = function(){
 					self.patientForm.$setPristine();
 					self.patient = {};
+					self.listSalleSpecialites();
 				};
 				
 				self.edit = function(){
@@ -82,8 +84,33 @@
 					self.formation = null;
 				};
 				
-				self.list();
+				self.show = function(){
+					$http({
+						method : 'GET', 
+						url : 'api/salles'+id
+						
+					}).then(function success(response){
+						self.salle = response.data;
+					}, function error(response){
+						
+					});
+					
+				};
 				
+//				self.listSalleSpecialites = function() {
+//					$http({
+//						method : 'GET',
+//						url : 'api/'
+//					}).then(function success(response) {
+//						self.salleSpecialites = response.data;
+//						
+//					}, function error(response) {
+//
+//					});
+//				};
+				
+				self.list();
+				self.salleSpecialites();
 				
 			},
 			controllerAs : patientCtrl
