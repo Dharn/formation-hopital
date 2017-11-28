@@ -6,6 +6,10 @@
 			restrict : 'E',
 			templateUrl : 'mir.html',
 			controller : function() {
+				
+				var self = this;
+				
+				self.utilisateurConnexion = null;
 
 			},
 			controllerAs: 'connexionCtrl'
