@@ -23,11 +23,8 @@ import java.util.Date;
 public class Consultation {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqConsultation")
     @Id
-<<<<<<< HEAD
-    @JsonView(Views.Consultation.class)
-=======
     @JsonView(Views.Common.class)
->>>>>>> 482a05b909fa01a4ac3d33df73d6fbf8affb4a24
+
     private Integer id;
 	@Version
 	@JsonView(Views.Consultation.class)
