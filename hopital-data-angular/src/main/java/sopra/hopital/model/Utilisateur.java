@@ -3,16 +3,25 @@ package sopra.hopital.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.Version;
+
+import org.springframework.data.annotation.Id;
+
 import com.fasterxml.jackson.annotation.JsonView;
 
 
 @Entity
 public class Utilisateur {
 	
+	@Id
 	@Column(name = "id")
 	@GeneratedValue
 	@JsonView(Views.Common.class)
 	private Long id;
+	
+	@Version
+	@Column(name = "version")
+	private int version;
 	
 	@Column(name = "role")
 	@JsonView(Views.Common.class)
