@@ -1,10 +1,64 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<meta charset="UTF-8">
+<div>
+	<table class="table">
+		<tr>
+			<th>Role</th>
+			<th>Login</th>
+			<th>Mot de passe</th>
+			<th></th>
+			<th></th>
+		</tr>
+		<tr ng-repeat="utilisateur in adminUtilisateurCtrl.utilisateurs">
+			<td>{{utilisateur.role}}</td>
+			<td>{{utilisateur.login}}</td>
+			<td>{{utilisateur.motDePasse}}</td>
 
-</body>
-</html>
+			<td><button class='btn btn-success btn-sm'
+					ng-click="adminUtilisateurCtrl.edit(utilisateur.id)">
+					<span class='glyphicon glyphicon-pencil'></span>
+				</button></td>
+			<td><button class='btn btn-danger btn-sm'
+					ng-click="adminUtilisateurCtrl.remove(utilisateur.id)">
+					<span class='glyphicon glyphicon-trash'></span>
+				</button></td>
+		</tr>
+		<tr>
+			<td colspan="5"><button class='btn btn-success btn-sm'
+					ng-click="adminUtilisateurCtrl.add()">
+					<span class='glyphicon glyphicon-plus'></span>
+				</button></td>
+		</tr>
+	</table>
+	
+	<div class="panel panel-default" style="margin-top: 20px"
+		ng-show="adminUtilisateurCtrl.utilisateur">
+		<div class="panel-heading">Edition de l'utilisateur</div>
+		<div class="panel-body">
+			<form name="adminUtilisateurCtrl.utilisateurForm"
+				ng-submit="adminUtilisateurCtrl.utilisateurForm.$valid && adminUtilisateurCtrl.save()" novalidate>
+				<input type="hidden" ng-model="adminUtilisateurCtrl.utilisateur.id" />
+				<div class="form-group">
+					<label for="role">Role</label> <input type="text" ng-readonly="!adminUtilisateurCtrl.ajout"
+						class="form-control" style="width: 400px"
+						ng-model="adminUtilisateurCtrl.utilisateur.role" required />
+				</div>
+				<div class="form-group">
+					<label for="login">Login</label> <input type="text" ng-readonly="!adminUtilisateurCtrl.ajout"
+						class="form-control" style="width: 400px"
+						ng-model="adminUtilisateurCtrl.utilisateur.login" />
+				</div>
+				<div class="form-group">
+					<label for="motDePasse">Mot de passe</label> <input type="text" ng-readonly="!adminUtilisateurCtrl.ajout"
+						class="form-control" style="width: 400px"
+						ng-model="adminUtilisateurCtrl.utilisateur.motDePasse" />
+				</div>
+				<button class="btn btn-success" type="submit">
+					<span class="glyphicon glyphicon-ok"></span>
+				</button>
+				<button class="btn btn-warning" ng-click="adminUtilisateurCtrl.cancel()">
+					<span class="glyphicon glyphicon-arrow-left"></span>
+				</button>
+			</form>
+		</div>
+	</div>
+</div>

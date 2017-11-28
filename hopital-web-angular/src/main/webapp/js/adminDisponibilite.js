@@ -105,7 +105,7 @@
 								};
 
 								self.list();
-								self.listTypes();
+							
 							},
 							controllerAs : "adminDisponibiliteCtrl"
 						};

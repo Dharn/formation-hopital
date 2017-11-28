@@ -88,7 +88,7 @@
 								};
 
 								self.list();
-								self.listTypes();
+						
 							},
 							controllerAs : "medecinDisponibiliteCtrl"
 						};
