@@ -27,7 +27,7 @@ public class ConsultationController {
 	@GetMapping("/consultations")
 	//@JsonView(Views.Consultation.class)
 	public ResponseEntity<List<Consultation>> findAll() {
-		return new ResponseEntity<List<Consultation>>(consultationRepo.findAll(), HttpStatus.OK);
+		return new ResponseEntity<List<Consultation>>(consultationRepo.findAllWithPatient(), HttpStatus.OK);
 	}
 
 	@GetMapping("/consultations/{id}")

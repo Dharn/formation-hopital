@@ -13,6 +13,8 @@ import javax.persistence.Version;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import java.util.Date;
 
 @Entity
@@ -21,6 +23,7 @@ import java.util.Date;
 public class Consultation {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqConsultation")
     @Id
+    @JsonView(Views.Common.class)
     private Integer id;
 	@Version
 	private int version;
