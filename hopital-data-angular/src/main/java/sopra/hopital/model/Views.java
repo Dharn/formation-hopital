@@ -32,4 +32,14 @@ public class Views {
 	public static class Specialite extends Common{
 
 	}
+	public static class SpecialiteMedecin extends Specialite{
+
+	}
+	public static class SpecialiteSalle extends Specialite{
+
+	}
+	public static class SpecialiteComplete extends Specialite{
+
+	}
+	
 }
