@@ -14,13 +14,10 @@
 								self.disponibilite = null;
 
 								self.ajout = true;
-<<<<<<< HEAD
 
 								self.medecins = [];
-=======
 								
 								self.medecinlist = [];
->>>>>>> 4f640c487129d0e01f989f65197573583500cfaf
 
 								self.list = function() {
 									$http({
@@ -32,8 +29,6 @@
 
 									});
 								};
-<<<<<<< HEAD
-=======
 								
 								self.medecinlist = function(idMedecin) {
 									$http({
@@ -45,7 +40,6 @@
 
 									});
 								};
->>>>>>> 4f640c487129d0e01f989f65197573583500cfaf
 
 								self.add = function() {
 									self.disponibiliteForm.$setPristine();
@@ -55,28 +49,19 @@
 								};
 
 								self.edit = function(convention, code) {
-=======
 									self.listdisponibilites();
 								};
 
 								self.edit = function(id) {
->>>>>>> 4f640c487129d0e01f989f65197573583500cfaf
 									self.ajout = false;
 									self.disponibiliteForm.$setPristine();
 									$http(
 											{
 												method : 'GET',
-<<<<<<< HEAD
-												url : 'api/disponibilites/'
-											}).then(function success(response) {
-										self.disponibilite = response.data;
-										self.listMedecins();
-=======
 												url : 'api/disponibilites/' + id
 											}).then(function success(response) {
 										self.disponibilite = response.data;
 										self.listdisponibilites();
->>>>>>> 4f640c487129d0e01f989f65197573583500cfaf
 									}, function error(response) {
 
 									});
