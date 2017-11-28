@@ -4,7 +4,7 @@
 	app.directive("connexion", function() {
 		return {
 			restrict : 'E',
-			templateUrl : "connexion.html"
+			templateUrl : "mir.html"
 			
 			};
 		});

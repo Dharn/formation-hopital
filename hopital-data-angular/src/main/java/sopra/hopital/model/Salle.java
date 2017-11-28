@@ -47,6 +47,32 @@ public class Salle {
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
+	public List<SalleSpecialite> getSalleSpecialites() {
+		return salleSpecialites;
+	}
+
+	public void setSalleSpecialites(List<SalleSpecialite> salleSpecialites) {
+		this.salleSpecialites = salleSpecialites;
+	}
+
+	public List<Consultation> getConsultations() {
+		return consultations;
+	}
+
+	public void setConsultations(List<Consultation> consultations) {
+		this.consultations = consultations;
+	}
+	
+	
 	
 
 	
