@@ -31,11 +31,11 @@ public class Specialite {
 	
 	@OneToMany(mappedBy = "specialite")
 	//@JsonView({Views.SpecialiteWithSalle.class})
-	private List<SalleSpecialite> listeSalleSpecialite;
+	private List<SalleSpecialite> salleSpecialites;
 	
 	@OneToMany(mappedBy = "specialite")
 	//@JsonView({Views.SpecialiteWithMedecin.class})
-	private List<MedecinSpecialite> listeMedecinSpecialite;
+	private List<MedecinSpecialite> medecinSpecialites;
 	
 	public Specialite() {
 		
