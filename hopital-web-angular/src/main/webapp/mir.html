@@ -3,22 +3,14 @@
 	<div class="panel-heading">Connexion !</div>
 	<div class="panel-body">
 		<form name="connexionCtrl.connexionForm"
-			ng-submit="connexionCtrl.connexionForm.$valid && connexionCtrl.connect()"
-			novalidate>
-
-			<div class="form-group">
-				<label for="electrique">Session</label>
-				 <input type="radio" class="form-control" style="width: 400px" ng-model="connexionCtrl" value="ADMIN" />ADMIN
-				 <input type="radio" class="form-control" style="width: 400px" ng-model="connexionCtrl" value="SECRETAIRE" />SECRETAIRE
-				 <input type="radio" class="form-control" style="width: 400px" ng-model="connexionCtrl" value="MEDECIN" />MEDECIN
-			</div>
+			ng-submit="connexionCtrl.connexionForm.$valid && connexionCtrl.connect()" novalidate>
 			<div class="form-group">
 				<label for="login">Login</label> <input type="text"
 					class="form-control" style="width: 400px"
 					ng-model="connexionCtrl" required />
 			</div>
 			<div class="form-group">
-				<label for="mdp">Mot De Passe</label> <input type="password"
+				<label for="password">Mot De Passe</label> <input type="password"
 					class="form-control" style="width: 400px"
 					ng-model="connexionCtrl" required />
 			</div>
