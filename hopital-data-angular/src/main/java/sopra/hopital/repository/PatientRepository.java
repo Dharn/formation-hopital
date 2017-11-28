@@ -8,7 +8,5 @@ import sopra.hopital.model.Patient;
 
 public interface PatientRepository extends JpaRepository<Patient, Long> {
 
-//	@Query("select p from Patient p left join fetch p.consultations c where p.id = :id")
-//	Patient findOnePatientWithConsultations(@Param("id") Long id);
-	
+
 }

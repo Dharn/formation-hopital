@@ -53,9 +53,8 @@ public class Patient {
 	@JsonView(Views.Patient.class)
 	private String securiteSociale;
 	
-//	@JsonView({Views.Patient.class, Views.Consultation.class})
-//	@OneToMany (mappedBy = "patient")
-//	private List<Consultation> consultations;
+	@OneToMany (mappedBy = "patient")
+	private List<Consultation> consultations;
 
 	public Long getId() {
 		return id;
