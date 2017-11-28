@@ -23,31 +23,45 @@ import java.util.Date;
 public class Consultation {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqConsultation")
     @Id
+<<<<<<< HEAD
+    @JsonView(Views.Consultation.class)
+=======
     @JsonView(Views.Common.class)
+>>>>>>> 482a05b909fa01a4ac3d33df73d6fbf8affb4a24
     private Integer id;
 	@Version
+	@JsonView(Views.Consultation.class)
 	private int version;
 	@Temporal(TemporalType.DATE)
+	@JsonView(Views.Consultation.class)
 	private Date dtRendezVous;
+	@JsonView(Views.Consultation.class)
 	private Integer duree;
+	@JsonView(Views.Consultation.class)
 	private String rapport;
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@JsonView(Views.Consultation.class)
 	private Date dtDemarrage;
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@JsonView(Views.Consultation.class)
 	private Date dtFin;
 	@ManyToOne
 	@JoinColumn(name = "patient_id")
+	@JsonView(Views.Consultation.class)
 	private Patient patient;
 	@ManyToOne
 	@JoinColumn(name = "salle_id")
+	@JsonView(Views.Consultation.class)
 	private Salle salle;
 	@ManyToOne
 	@JoinColumn(name = "specialite_id")
+	@JsonView(Views.Consultation.class)
 	private Specialite specialite;
 	@ManyToOne
 	@JoinColumn(name = "medecin_id")
+	@JsonView(Views.Consultation.class)
 	private Medecin medecin;
 	
 	public Consultation(){

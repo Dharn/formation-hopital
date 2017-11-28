@@ -1,10 +1,7 @@
 (function() {
 	var app = angular.module("disponibilite", []);
 
-	app
-			.directive(
-					"disponibilite",
-					function() {
+	app.directive("disponibilite", function() {
 						return {
 							restrict : 'E',
 							templateUrl : "disponibilite.html",
@@ -14,21 +11,8 @@
 								self.disponibilite = null;
 
 								self.ajout = true;
-								
-								self.medecinlist = [];
 
-								self.list = function() {
-									$http({
-										method : 'GET',
-										url : 'api/disponibilites'
-									}).then(function success(response) {
-										self.disponibilites = response.data;
-									}, function error(response) {
-
-									});
-								};
-								
-								self.medecinlist = function(idMedecin) {
+								self.list = function(idMedecin) {
 									$http({
 										method : 'GET',
 										url : 'api/disponibilites/medecin=' + idMedecin
@@ -49,8 +33,7 @@
 								self.edit = function(id) {
 									self.ajout = false;
 									self.disponibiliteForm.$setPristine();
-									$http(
-											{
+									$http({
 												method : 'GET',
 												url : 'api/disponibilites/' + id
 											}).then(function success(response) {
@@ -105,9 +88,9 @@
 								};
 
 								self.list();
-							
+						
 							},
-							controllerAs : "adminDisponibiliteCtrl"
+							controllerAs : "medecinDisponibiliteCtrl"
 						};
 					});
 })();

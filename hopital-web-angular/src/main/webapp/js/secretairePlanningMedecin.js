@@ -15,7 +15,7 @@
 
 								self.ajout = true;
 								
-								self.medecinlist = [];
+								self.medecin = [];
 
 								self.list = function() {
 									$http({
@@ -28,10 +28,10 @@
 									});
 								};
 								
-								self.medecinlist = function(idMedecin) {
+								self.listbymedecin = function(idmedecin) {
 									$http({
 										method : 'GET',
-										url : 'api/disponibilites/medecin=' + idMedecin
+										url : 'api/disponibilites/medecin=' + idmedecin
 									}).then(function success(response) {
 										self.disponibilites = response.data;
 									}, function error(response) {
@@ -103,11 +103,22 @@
 								self.cancel = function() {
 									self.disponibilite = null;
 								};
+								
+								self.listMedecins = function(idsecretaire) {
+									$http({
+										method : 'GET',
+										url : 'api/secretaire?id=' + idsecretaire + '/medecins'
+									}).then(function success(response) {
+										self.listMedecins = response.data;
+									}, function error(response) {
 
+									});
+								};
+								
 								self.list();
-							
+								self.listMedecins();
 							},
-							controllerAs : "adminDisponibiliteCtrl"
+							controllerAs : "secretaireDisponibiliteCtrl"
 						};
 					});
 })();

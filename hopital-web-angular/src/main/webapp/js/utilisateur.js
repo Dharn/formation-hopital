@@ -1,61 +1,48 @@
 (function() {
-	var app = angular.module("disponibilite", []);
+	var app = angular.module("utilisateur", []);
 
 	app
 			.directive(
-					"disponibilite",
+					"utilisateur",
 					function() {
 						return {
 							restrict : 'E',
-							templateUrl : "disponibilite.html",
+							templateUrl : "utilisateur.html",
 							controller : function($http) {
 								var self = this;
-								self.disponibilites = [];
-								self.disponibilite = null;
+								self.utilisateurs = [];
+								self.utilisateur = null;
 
 								self.ajout = true;
-								
-								self.medecinlist = [];
 
 								self.list = function() {
 									$http({
 										method : 'GET',
-										url : 'api/disponibilites'
+										url : 'api/utilisateurs'
 									}).then(function success(response) {
-										self.disponibilites = response.data;
-									}, function error(response) {
-
-									});
-								};
-								
-								self.medecinlist = function(idMedecin) {
-									$http({
-										method : 'GET',
-										url : 'api/disponibilites/medecin=' + idMedecin
-									}).then(function success(response) {
-										self.disponibilites = response.data;
+										self.utilisateurs = response.data;
 									}, function error(response) {
 
 									});
 								};
 
 								self.add = function() {
-									self.disponibiliteForm.$setPristine();
-									self.disponibilite = {};
+									self.utilisateurForm.$setPristine();
+									self.utilisateur = {};
 									self.ajout = true;
-									self.listdisponibilites();
+									self.listutilisateurs();
 								};
 
 								self.edit = function(id) {
 									self.ajout = false;
-									self.disponibiliteForm.$setPristine();
+									self.utilisateurForm.$setPristine();
 									$http(
 											{
 												method : 'GET',
-												url : 'api/disponibilites/' + id
+												url : 'api/utilisateurs/' + id
 											}).then(function success(response) {
-										self.disponibilite = response.data;
-										self.listdisponibilites();
+										self.utilisateur = response.data;
+										self.listutilisateurs();
 									}, function error(response) {
 
 									});
@@ -65,8 +52,8 @@
 									if (self.ajout) {
 										$http({
 											method : 'POST',
-											url : 'api/disponibilites/',
-											data : self.disponibilite
+											url : 'api/utilisateurs/',
+											data : self.utilisateur
 										}).then(function success(response) {
 											self.list();
 											self.cancel();
@@ -76,8 +63,8 @@
 									} else {
 										$http({
 											method : 'PUT',
-											url : 'api/disponibilites/',
-											data : self.disponibilite
+											url : 'api/utilisateurs/',
+											data : self.utilisateur
 										}).then(function success(response) {
 											self.list();
 											self.cancel();
@@ -91,7 +78,7 @@
 									$http(
 											{
 												method : 'DELETE',
-												url : 'api/disponibilites/' + id
+												url : 'api/utilisateurs/' + id
 											}).then(function success(response) {
 										self.list();
 									}, function error(response) {
@@ -101,13 +88,13 @@
 								};
 
 								self.cancel = function() {
-									self.disponibilite = null;
+									self.utilisateur = null;
 								};
 
 								self.list();
-							
+								self.listTypes();
 							},
-							controllerAs : "adminDisponibiliteCtrl"
+							controllerAs : "utilisateurCtrl"
 						};
 					});
 })();
