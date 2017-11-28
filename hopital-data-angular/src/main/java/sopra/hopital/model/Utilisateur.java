@@ -5,8 +5,10 @@ package sopra.hopital.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Version;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -15,9 +17,10 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 
 @Entity
+@SequenceGenerator(name="sequenceUtilisateur")
 public class Utilisateur {
 	
-	@Id
+	@Id @GeneratedValue(generator="sequenceUtilisateur")
 	@Column(name = "id")
 	@JsonView(Views.Common.class)
 	private Long id;
@@ -45,7 +48,13 @@ public class Utilisateur {
 	@OneToOne	
 	//@JsonView(Views.Medecin.class)
 	private Secretaire secretaire;
+	
+	
+	
+	
+	
 
+	
 	public Utilisateur() {
 		super();
 	}
