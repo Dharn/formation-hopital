@@ -22,9 +22,9 @@ public class Consultation {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqConsultation")
     @Id
     private Integer id;
-	@Temporal(TemporalType.DATE)
 	@Version
 	private int version;
+	@Temporal(TemporalType.DATE)
 	private Date dtRendezVous;
 	private Integer duree;
 	private String rapport;
@@ -51,7 +51,7 @@ public class Consultation {
 		super();
 	}
 	
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {

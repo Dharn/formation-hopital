@@ -5,11 +5,10 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Version;
+import javax.persistence.Version;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -19,24 +18,19 @@ import com.fasterxml.jackson.annotation.JsonView;
 public class Specialite {
 	@Id @GeneratedValue(generator="sequenceSpecialite")
 	@Column(name="id")
-	@JsonView(Views.Common.class)
 	private Integer id;
 	
 	@Version
 	@Column(name="version")
-	@JsonView(Views.Common.class)
 	private int version;
 	
 	@Column(name="intitule")
-	@JsonView(Views.Common.class)
 	private String intitule;
 	
 	@OneToMany(mappedBy = "specialite")
-	//@JsonView({Views.SpecialiteWithSalle.class})
 	private List<SalleSpecialite> salleSpecialites;
 	
 	@OneToMany(mappedBy = "specialite")
-	//@JsonView({Views.SpecialiteWithMedecin.class})
 	private List<MedecinSpecialite> medecinSpecialites;
 	
 	public Specialite() {
