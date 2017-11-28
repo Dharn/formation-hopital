@@ -22,21 +22,20 @@ public class Salle {
 	
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqSalle")
 	@Id
-	@JsonView(Views.Common.class)
+	@JsonView(Views.Salle.class)
 	private Long id;
 	
 	@Version
 	private int version;
 
-	@JsonView(Views.Common.class)
+	@JsonView(Views.Salle.class)
 	private String numero;
 	
 	@OneToMany(mappedBy = "specialite")
-	@JsonView({Views.Specialite.class, Views.Salle.class})
+//	@JsonView(Views.Salle.class)
 	private List<SalleSpecialite> salleSpecialites;
-	
+
 	@OneToMany(mappedBy = "salle")
-	@JsonView({Views.Salle.class, Views.Consultation.class})
 	private List<Consultation> consultations;
 
 	public Long getId() {
