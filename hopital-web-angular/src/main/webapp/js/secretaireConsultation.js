@@ -48,19 +48,6 @@
 					
 					
 				};
-				
-				self.show = function(id) {
-					self.formationForm.$setPristine();
-					$http({
-						method : 'GET',
-						url : 'api/consultations/'+id
-					}).then(function success(response) {
-						self.consultation = response.data;
-					}, function error(response) {
-
-					});
-				};
-
 
 				self.cancel = function() {
 					self.formation = null;

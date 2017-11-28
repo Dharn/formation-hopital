@@ -1,32 +1,16 @@
 (function() {
-	var app = angular.module("hopitalApp", []);
-	
-	app.directive("connexion", function() {
-		return {
-			restrict : 'E',
-			templateUrl : 'mir.html',
-			controller : function() {
+	var app = angular.module("hopitalApp", [ "connexion" ]);
 
-			},
-			controllerAs: 'connexionCtrl'
-		};
-	});
-	
-	app.factory('AuthInterceptor', [ function() {
-		return {
-			// Send the Authorization header with each request
-			'request' : function(config) {
-				config.headers = config.headers || {};
-				var encodedString = btoa("admin:admin");
-				config.headers.Authorization = 'Basic ' + encodedString;
-				return config;
-			}
-		};
-	} ]);
-
-	app.config(function($httpProvider) {
-		$httpProvider.interceptors.push('AuthInterceptor');
-	});
-
+//	app.controller("SwitchController", function() {
+//		this.onglet = "module";
+//
+//		this.setOnglet = function(val) {
+//			this.onglet = val;
+//		};
+//
+//		this.isOnglet = function(val) {
+//			return this.onglet === val;
+//		}
+//	});
 
 })();
