@@ -42,4 +42,8 @@ public class Views {
 
 	}
 	
+	public static class ConsultationPatient extends Consultation{
+		
+	}
+	
 }
