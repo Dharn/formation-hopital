@@ -11,6 +11,8 @@ import javax.persistence.Version;
 import com.fasterxml.jackson.annotation.JsonView;
 
 
+
+
 @Entity
 public class Utilisateur {
 	
@@ -35,10 +37,10 @@ public class Utilisateur {
 	@JsonView(Views.Common.class)
 	private String motDePasse;
 	
-	@JsonView(Views.Secretaire.class)
+	//@JsonView(Views.Secretaire.class)
 	private Medecin medecin;
 	
-	@JsonView(Views.Medecin.class)
+	//@JsonView(Views.Medecin.class)
 	private Secretaire secretaire;
 
 	public Utilisateur() {
@@ -89,6 +91,14 @@ public class Utilisateur {
 
 	public void setMedecin(Medecin medecin) {
 		this.medecin = medecin;
+	}
+
+	public Secretaire getSecretaire() {
+		return secretaire;
+	}
+
+	public void setSecretaire(Secretaire secretaire) {
+		this.secretaire = secretaire;
 	}
 	
 	
