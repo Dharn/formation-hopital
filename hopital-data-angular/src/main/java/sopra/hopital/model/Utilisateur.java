@@ -42,11 +42,11 @@ public class Utilisateur {
 	private String motDePasse;
 	
 	@OneToOne	
-	//@JsonView(Views.Secretaire.class)
+	@JsonView(Views.Secretaire.class)
 	private Medecin medecin;
 	
 	@OneToOne	
-	//@JsonView(Views.Medecin.class)
+	@JsonView(Views.Medecin.class)
 	private Secretaire secretaire;
 	
 	
