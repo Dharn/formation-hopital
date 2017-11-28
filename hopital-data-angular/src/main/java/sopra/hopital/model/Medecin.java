@@ -29,6 +29,7 @@ public class Medecin {
 	
 	@Version
 	@Column(name="version")
+	@JsonView(Views.Common.class)
 	private int version;
 	
 
