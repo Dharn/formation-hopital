@@ -28,7 +28,6 @@ public class Views {
 	}
 	public static class Salle extends Common{
 
-
 	}
 	public static class Specialite extends Common{
 
@@ -42,8 +41,9 @@ public class Views {
 	public static class SpecialiteComplete extends Specialite{
 
 	}
-
-
-
-
+	
+	public static class ConsultationPatient extends Consultation{
+		
+	}
+	
 }
