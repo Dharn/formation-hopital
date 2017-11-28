@@ -5,12 +5,16 @@ import java.util.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 public class Disponibilite {
+	
 	
 	@Id
 	@JsonView(Views.Common.class)
@@ -19,11 +23,28 @@ public class Disponibilite {
 	@Version
 	private int version;
 	
-	@JsonView(Views.Common.class)
+	@Temporal(TemporalType.TIMESTAMP)
+	@JsonView(Views.Common.class)	
 	private Date dtDebut;
 	
+	@Temporal(TemporalType.TIMESTAMP)
 	@JsonView(Views.Common.class)
 	private Date dtFin;
+	
+	
+	@ManyToOne
+	@JsonView(Views.Common.class)
+	private Medecin medecin;
+	
+
+
+	public Medecin getMedecin() {
+		return medecin;
+	}
+
+	public void setMedecin(Medecin medecin) {
+		this.medecin = medecin;
+	}
 
 	public Long getId() {
 		return id;

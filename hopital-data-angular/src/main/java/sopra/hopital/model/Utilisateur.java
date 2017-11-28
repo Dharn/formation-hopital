@@ -6,6 +6,7 @@ package sopra.hopital.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -17,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 public class Utilisateur {
 	
 	@Id
-	
+	@Column(name = "id")
 	@JsonView(Views.Common.class)
 	private Long id;
 	
@@ -37,9 +38,11 @@ public class Utilisateur {
 	@JsonView(Views.Common.class)
 	private String motDePasse;
 	
+	@OneToOne	
 	//@JsonView(Views.Secretaire.class)
 	private Medecin medecin;
 	
+	@OneToOne	
 	//@JsonView(Views.Medecin.class)
 	private Secretaire secretaire;
 
