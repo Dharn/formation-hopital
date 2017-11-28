@@ -32,6 +32,12 @@ public class DisponibiliteController {
 	public ResponseEntity<List<Disponibilite>> findAll() {
 		return new ResponseEntity<List<Disponibilite>>(dispoRepo.findAll(), HttpStatus.OK);
 	}
+	
+	@GetMapping("api/disponibilites/medecin={id}")
+	@JsonView(Views.Disponibilite.class)
+	public ResponseEntity<List<Disponibilite>> listDispoByMedecin(@PathVariable("id") Long id) {
+		return new ResponseEntity<List<Disponibilite>>(dispoRepo.listDispoByMedecin(id), HttpStatus.OK);
+	}
 
 	@GetMapping("/disponibilites/{id}")
 	@JsonView(Views.Disponibilite.class)
