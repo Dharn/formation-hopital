@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
 import sopra.hopital.model.Secretaire;
-import sopra.hopital.model.Views;
 import sopra.hopital.repository.SecretaireRepository;
 
 @RestController
@@ -26,13 +23,13 @@ public class SecretaireController {
 	private SecretaireRepository secretaireRepo;
 	
 	@GetMapping("/secretaires") 
-	@JsonView(Views.Secretaire.class)
+	//@JsonView(Views.Secretaire.class)
 	public ResponseEntity<List<Secretaire>> findAll() {
 		return new ResponseEntity<List<Secretaire>>(secretaireRepo.findAll(), HttpStatus.OK);
 	}
 
 	@GetMapping("/secretaires/{id}")
-	@JsonView(Views.Secretaire.class)
+	//@JsonView(Views.Secretaire.class)
 	public ResponseEntity<Secretaire> findOne(@PathVariable("id") Long id) {
 		Secretaire tmp = secretaireRepo.findOne(id);
 		if (tmp != null) {
@@ -43,7 +40,7 @@ public class SecretaireController {
 	}
 
 	@PostMapping("/secretaires")
-	@JsonView(Views.Secretaire.class)
+	//@JsonView(Views.Secretaire.class)
 	public ResponseEntity<Secretaire> create(@RequestBody Secretaire obj) {
 		if (obj.getId() != null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -54,7 +51,7 @@ public class SecretaireController {
 	}
 
 	@PutMapping("/secretaires")
-	@JsonView(Views.Secretaire.class)
+	//@JsonView(Views.Secretaire.class)
 	public ResponseEntity<Secretaire> update(@RequestBody Secretaire obj) {
 		if (obj.getId() == null) {
 			return create(obj);
@@ -65,7 +62,7 @@ public class SecretaireController {
 	}
 
 	@DeleteMapping("/secretaires/{id}")
-	@JsonView(Views.Secretaire.class)
+	//@JsonView(Views.Secretaire.class)
 	public ResponseEntity<Secretaire> delete(@PathVariable("id") Long id) {
 		Secretaire tmp = secretaireRepo.findOne(id);
 		if (tmp == null) {

@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import sopra.hopital.model.Specialite;
-import sopra.hopital.model.Views;
 import sopra.hopital.repository.SpecialiteRepository;
 
 @RestController
@@ -26,13 +25,13 @@ public class SpecialiteController {
 	private SpecialiteRepository speRepo;
 	
 	@GetMapping("/specialites")
-	@JsonView(Views.Specialite.class)
+	//@JsonView(Views.Specialite.class)
 	public ResponseEntity<List<Specialite>> findAll() {
 		return new ResponseEntity<List<Specialite>>(speRepo.findAll(), HttpStatus.OK);
 	}
 
 	@GetMapping("/specialites/{id}")
-	@JsonView(Views.Specialite.class)
+	//@JsonView(Views.Specialite.class)
 	public ResponseEntity<Specialite> findOne(@PathVariable("id") Integer id) {
 		Specialite tmp = speRepo.findOne(id);
 		if (tmp != null) {
@@ -43,7 +42,7 @@ public class SpecialiteController {
 	}
 
 	@PostMapping("/specialites")
-	@JsonView(Views.Specialite.class)
+	//@JsonView(Views.Specialite.class)
 	public ResponseEntity<Specialite> create(@RequestBody Specialite obj) {
 		if (obj.getId() != null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -54,7 +53,7 @@ public class SpecialiteController {
 	}
 
 	@PutMapping("/specialites")
-	@JsonView(Views.Specialite.class)
+	//@JsonView(Views.Specialite.class)
 	public ResponseEntity<Specialite> update(@RequestBody Specialite obj) {
 		if (obj.getId() == null) {
 			return create(obj);
@@ -65,7 +64,7 @@ public class SpecialiteController {
 	}
 
 	@DeleteMapping("/specialites/{id}")
-	@JsonView(Views.Specialite.class)
+	//@JsonView(Views.Specialite.class)
 	public ResponseEntity<Specialite> delete(@PathVariable("id") Integer id) {
 		Specialite tmp = speRepo.findOne(id);
 		if (tmp == null) {
