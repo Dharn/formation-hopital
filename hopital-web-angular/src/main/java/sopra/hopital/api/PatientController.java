@@ -40,6 +40,17 @@ public class PatientController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	@GetMapping("/patients/{nom}")
+	@JsonView(Views.Patient.class)
+	public ResponseEntity<List<Patient>> findAllByNom(@PathVariable("nom") String nom) {
+		List<Patient> tmp = patientRepo.findAllByNom(nom);
+		if (tmp != null) {
+			return new ResponseEntity<>(tmp, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
 
 	@PostMapping("/patients")
 	//@JsonView(Views.Patient.class)
