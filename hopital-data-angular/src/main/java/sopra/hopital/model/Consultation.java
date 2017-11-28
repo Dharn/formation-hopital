@@ -51,7 +51,7 @@ public class Consultation {
 		super();
 	}
 	
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
