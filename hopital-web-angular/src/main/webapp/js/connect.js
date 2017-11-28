@@ -4,8 +4,11 @@
 	app.directive("connexion", function() {
 		return {
 			restrict : 'E',
-			templateUrl : "mir.html"
-			
-			};
-		});
+			templateUrl : 'mir.html',
+			controller : function() {
+
+			},
+			controllerAs: 'connexionCtrl'
+		};
+	});
 })();
