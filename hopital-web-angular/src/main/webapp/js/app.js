@@ -1,6 +1,5 @@
 (function() {
-	var app = angular.module("hopitalApp", [ "connexion" ,"patient","adminSalle","medecin","adminConsultation",
-		"specialite","medecinConsultation","secretaireConsultation"]);
+	var app = angular.module("hopitalApp", [ "connexion" ]);
 	
 	
 	app.factory('AuthInterceptor', [ function() {
