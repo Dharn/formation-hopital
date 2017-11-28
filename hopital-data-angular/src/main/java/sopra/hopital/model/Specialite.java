@@ -18,19 +18,24 @@ import com.fasterxml.jackson.annotation.JsonView;
 public class Specialite {
 	@Id @GeneratedValue(generator="sequenceSpecialite")
 	@Column(name="id")
+	@JsonView(Views.Common.class)
 	private Integer id;
 	
 	@Version
 	@Column(name="version")
+	@JsonView(Views.Common.class)
 	private int version;
 	
 	@Column(name="intitule")
+	@JsonView(Views.Common.class)
 	private String intitule;
 	
 	@OneToMany(mappedBy = "specialite")
+	@JsonView({Views.SpecialiteSalle.class,Views.SpecialiteComplete.class})
 	private List<SalleSpecialite> salleSpecialites;
 	
 	@OneToMany(mappedBy = "specialite")
+	@JsonView({Views.SpecialiteSalle.class,Views.SpecialiteComplete.class})
 	private List<MedecinSpecialite> medecinSpecialites;
 	
 	public Specialite() {
