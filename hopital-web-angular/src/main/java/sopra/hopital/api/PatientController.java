@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import sopra.hopital.model.Patient;
 import sopra.hopital.model.Specialite;
+import sopra.hopital.model.Views;
 import sopra.hopital.repository.PatientRepository;
 import sopra.hopital.repository.SpecialiteRepository;
 
