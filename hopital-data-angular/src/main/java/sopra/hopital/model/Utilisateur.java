@@ -15,27 +15,31 @@ import com.fasterxml.jackson.annotation.JsonView;
 public class Utilisateur {
 	
 	@Id
-	@Column(name = "id")
+	
 	@JsonView(Views.Common.class)
 	private Long id;
 	
 	@Version
-	@Column(name = "version")
+	
 	private int version;
 	
-	@Column(name = "role")
+	
 	@JsonView(Views.Common.class)
 	private Role role;
 	
-	@Column(name = "login")
+	
 	@JsonView(Views.Common.class)
 	private String login;
 	
-	@Column(name = "password")
+	
 	@JsonView(Views.Common.class)
 	private String motDePasse;
 	
+	@JsonView(Views.Secretaire.class)
 	private Medecin medecin;
+	
+	@JsonView(Views.Medecin.class)
+	private Secretaire secretaire;
 
 	public Utilisateur() {
 		super();

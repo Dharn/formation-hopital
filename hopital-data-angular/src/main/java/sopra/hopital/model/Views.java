@@ -6,20 +6,13 @@ public class Views {
 
 	}
 	
-	public static class Specialite extends Common{
-		
+	public static class Secretaire {
+
 	}
 	
-	public static class SpecialiteWithMedecin extends Specialite{
-		
+	public static class Medecin {
+
 	}
 	
-	public static class SpecialiteWithSalle extends Specialite{
-		
-	}
-	
-	public static class SpecialiteComplete extends Specialite{
-		
-	}
 
 }
