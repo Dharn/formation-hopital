@@ -1,0 +1,57 @@
+<meta charset="UTF-8">
+<div>
+	<table class="table">
+		<tr>
+			<th>ID</th>
+			<th>Intitulé</th>
+			<th></th>
+			<th></th>
+		</tr>
+		<tr ng-repeat="specialite in specialiteCtrl.specialites">
+			<td>{{specialite.id}}</td>
+			<td>{{specialite.intitule}}</td>
+
+			<td><button class='btn btn-success btn-sm'
+					ng-click="specialiteCtrl.edit(specialite.id)">
+					<span class='glyphicon glyphicon-pencil'></span>
+				</button></td>
+			<td><button class='btn btn-danger btn-sm'
+					ng-click="specialiteCtrl.remove(specialite.id)">
+					<span class='glyphicon glyphicon-trash'></span>
+				</button></td>
+		</tr>
+		<tr>
+			<td colspan="5"><button class='btn btn-success btn-sm'
+					ng-click="specialiteCtrl.add()">
+					<span class='glyphicon glyphicon-plus'></span>
+				</button></td>
+		</tr>
+	</table>
+	
+	<div class="panel panel-default" style="margin-top: 20px"
+		ng-show="specialiteCtrl.specialite">
+		<div class="panel-heading">Edition de la spécialité</div>
+		<div class="panel-body">
+			<form name="specialiteCtrl.specialiteForm"
+				ng-submit="specialiteCtrl.specialiteForm.$valid && specialiteCtrl.save()" novalidate>
+				<input type="hidden" ng-model="specialiteCtrl.specialite.version" />
+				<div class="form-group">
+					<label for="id">ID</label> <input type="number" ng-readonly="!specialiteCtrl.ajout"
+						class="form-control" style="width: 400px"
+						ng-model="specialiteCtrl.specialite.id" required />
+				</div>
+				<div class="form-group">
+					<label for="intitule">Intitulé</label> <input type="text"
+						class="form-control" style="width: 400px"
+						ng-model="specialiteCtrl.specialite.intitulé" />
+				</div>
+				<button class="btn btn-success" type="submit">
+					<span class="glyphicon glyphicon-ok"></span>
+				</button>
+				<button class="btn btn-warning" ng-click="specialiteCtrl.cancel()">
+					<span class="glyphicon glyphicon-arrow-left"></span>
+				</button>
+			</form>
+		</div>
+	</div>
+</div>
