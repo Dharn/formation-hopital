@@ -1,5 +1,6 @@
 (function() {
-	var app = angular.module("hopitalApp", [ "connexion" ,"patient","adminSalle",]);
+	var app = angular.module("hopitalApp", [ "connexion" ,"patient","adminSalle","medecin","adminConsultation",
+		"specialite","medecinConsultation","secretaireConsultation"]);
 
 //	app.controller("SwitchController", function() {
 //		this.onglet = "module";
