@@ -1,6 +1,6 @@
 package sopra.formation.api;
 
-import java.util.List;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,27 +13,26 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
-import sopra.hopital.model.Specialite;
-import sopra.hopital.repository.SpecialiteRepository;
+import sopra.hopital.model.Utilisateur;
+import sopra.hopital.repository.UtilisateurRepository;
 
 @RestController
-public class SpecialiteController {
-
-	@Autowired
-	private SpecialiteRepository speRepo;
+public class UtilisateurController {
 	
-	@GetMapping("/specialites")
-	//@JsonView(Views.Specialite.class)
-	public ResponseEntity<List<Specialite>> findAll() {
-		return new ResponseEntity<List<Specialite>>(speRepo.findAll(), HttpStatus.OK);
+	
+	@Autowired
+	private UtilisateurRepository utiRepo;
+	
+	@GetMapping("/utilisateurs")
+	//@JsonView(Views.Utilisateur.class)
+	public ResponseEntity<List<Utilisateur>> findAll() {
+		return new ResponseEntity<List<Utilisateur>>(utiRepo.findAll(), HttpStatus.OK);
 	}
 
-	@GetMapping("/specialites/{id}")
-	//@JsonView(Views.Specialite.class)
-	public ResponseEntity<Specialite> findOne(@PathVariable("id") Integer id) {
-		Specialite tmp = speRepo.findOne(id);
+	@GetMapping("/utilisateurs/{id}")
+	//@JsonView(Views.Utilisateur.class)
+	public ResponseEntity<Utilisateur> findOne(@PathVariable("id") Long id) {
+		Utilisateur tmp = utiRepo.findOne(id);
 		if (tmp != null) {
 			return new ResponseEntity<>(tmp, HttpStatus.OK);
 		} else {
@@ -41,37 +40,41 @@ public class SpecialiteController {
 		}
 	}
 
-	@PostMapping("/specialites")
-	//@JsonView(Views.Specialite.class)
-	public ResponseEntity<Specialite> create(@RequestBody Specialite obj) {
+	@PostMapping("/utilisateurs")
+	//@JsonView(Views.Utilisateur.class)
+	public ResponseEntity<Utilisateur> create(@RequestBody Utilisateur obj) {
 		if (obj.getId() != null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		obj = speRepo.save(obj);
+		obj = utiRepo.save(obj);
 
 		return new ResponseEntity<>(obj, HttpStatus.CREATED);
 	}
 
-	@PutMapping("/specialites")
-	//@JsonView(Views.Specialite.class)
-	public ResponseEntity<Specialite> update(@RequestBody Specialite obj) {
+	@PutMapping("/utilisateurs")
+	//@JsonView(Views.Utilisateur.class)
+	public ResponseEntity<Utilisateur> update(@RequestBody Utilisateur obj) {
 		if (obj.getId() == null) {
 			return create(obj);
 		}
-		obj = speRepo.save(obj);
+		obj = utiRepo.save(obj);
 
 		return new ResponseEntity<>(obj, HttpStatus.OK);
 	}
 
-	@DeleteMapping("/specialites/{id}")
-	//@JsonView(Views.Specialite.class)
-	public ResponseEntity<Specialite> delete(@PathVariable("id") Integer id) {
-		Specialite tmp = speRepo.findOne(id);
+	@DeleteMapping("/utilisateurs/{id}")
+	//@JsonView(Views.Utilisateur.class)
+	public ResponseEntity<Utilisateur> delete(@PathVariable("id") Long id) {
+		Utilisateur tmp = utiRepo.findOne(id);
 		if (tmp == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
-			speRepo.delete(id);
+			utiRepo.delete(id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 	}
+	
+	
+	
+
 }

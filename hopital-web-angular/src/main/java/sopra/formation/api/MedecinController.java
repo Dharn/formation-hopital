@@ -25,13 +25,13 @@ public class MedecinController {
 	private MedecinRepository medRepo;
 	
 	@GetMapping("/medecins")
-	//@JsonView(Views.Eleve.class)
+	//@JsonView(Views.Medecin.class)
 	public ResponseEntity<List<Medecin>> findAll() {
 		return new ResponseEntity<List<Medecin>>(medRepo.findAll(), HttpStatus.OK);
 	}
 
 	@GetMapping("/medecins/{id}")
-	//@JsonView(Views.Eleve.class)
+	//@JsonView(Views.Medecin.class)
 	public ResponseEntity<Medecin> findOne(@PathVariable("id") Long id) {
 		Medecin tmp = medRepo.findOne(id);
 		if (tmp != null) {
@@ -42,7 +42,7 @@ public class MedecinController {
 	}
 
 	@PostMapping("/medecins")
-	//@JsonView(Views.Eleve.class)
+	//@JsonView(Views.Medecin.class)
 	public ResponseEntity<Medecin> create(@RequestBody Medecin obj) {
 		if (obj.getId() != null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -53,7 +53,7 @@ public class MedecinController {
 	}
 
 	@PutMapping("/medecins")
-	//@JsonView(Views.Eleve.class)
+	//@JsonView(Views.Medecin.class)
 	public ResponseEntity<Medecin> update(@RequestBody Medecin obj) {
 		if (obj.getId() == null) {
 			return create(obj);
@@ -64,7 +64,7 @@ public class MedecinController {
 	}
 
 	@DeleteMapping("/medecins/{id}")
-	//@JsonView(Views.Eleve.class)
+	//@JsonView(Views.Medecin.class)
 	public ResponseEntity<Medecin> delete(@PathVariable("id") Long id) {
 		Medecin tmp = medRepo.findOne(id);
 		if (tmp == null) {
