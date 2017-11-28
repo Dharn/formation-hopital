@@ -1,11 +1,12 @@
 package sopra.hopital.model;
 
+
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Version;
-
-import org.springframework.data.annotation.Id;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -15,7 +16,6 @@ public class Utilisateur {
 	
 	@Id
 	@Column(name = "id")
-	@GeneratedValue
 	@JsonView(Views.Common.class)
 	private Long id;
 	
@@ -75,6 +75,16 @@ public class Utilisateur {
 	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
 	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+	
+	
 	
 	
 
