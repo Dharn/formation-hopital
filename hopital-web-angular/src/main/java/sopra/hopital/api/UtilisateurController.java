@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import sopra.hopital.model.Utilisateur;
+import sopra.hopital.model.Views;
 import sopra.hopital.repository.UtilisateurRepository;
 
 @RestController
@@ -24,13 +27,13 @@ public class UtilisateurController {
 	private UtilisateurRepository utiRepo;
 	
 	@GetMapping("/utilisateurs")
-	//@JsonView(Views.Utilisateur.class)
+	@JsonView(Views.Utilisateur.class)
 	public ResponseEntity<List<Utilisateur>> findAll() {
 		return new ResponseEntity<List<Utilisateur>>(utiRepo.findAll(), HttpStatus.OK);
 	}
 
 	@GetMapping("/utilisateurs/{id}")
-	//@JsonView(Views.Utilisateur.class)
+	@JsonView(Views.Utilisateur.class)
 	public ResponseEntity<Utilisateur> findOne(@PathVariable("id") Long id) {
 		Utilisateur tmp = utiRepo.findOne(id);
 		if (tmp != null) {
@@ -41,7 +44,7 @@ public class UtilisateurController {
 	}
 
 	@PostMapping("/utilisateurs")
-	//@JsonView(Views.Utilisateur.class)
+	@JsonView(Views.Utilisateur.class)
 	public ResponseEntity<Utilisateur> create(@RequestBody Utilisateur obj) {
 		if (obj.getId() != null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -52,7 +55,7 @@ public class UtilisateurController {
 	}
 
 	@PutMapping("/utilisateurs")
-	//@JsonView(Views.Utilisateur.class)
+	@JsonView(Views.Utilisateur.class)
 	public ResponseEntity<Utilisateur> update(@RequestBody Utilisateur obj) {
 		if (obj.getId() == null) {
 			return create(obj);
@@ -63,7 +66,7 @@ public class UtilisateurController {
 	}
 
 	@DeleteMapping("/utilisateurs/{id}")
-	//@JsonView(Views.Utilisateur.class)
+	@JsonView(Views.Utilisateur.class)
 	public ResponseEntity<Utilisateur> delete(@PathVariable("id") Long id) {
 		Utilisateur tmp = utiRepo.findOne(id);
 		if (tmp == null) {
