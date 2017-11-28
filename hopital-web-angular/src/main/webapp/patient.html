@@ -2,6 +2,18 @@
 <div>
 	<table class="table">
 		<tr>
+			<td><label>Nom</label><input type="text" class="form-control"
+				style="width: 400px" /></td>
+			<td><button class='btn btn-success btn-sm'
+					ng-click="patientCtrl.trouverParNom(patient.nom)">
+					<span class='glyphicon glyphicon-search'></span>
+				</button></td>
+			<td colspan="4"><button class='btn btn-success btn-sm'
+					ng-click="patientCtrl.add()">
+					<span class='glyphicon glyphicon-plus'></span>
+				</button></td>
+		</tr>
+		<tr>
 			<th>Nom</th>
 			<th>Prénom</th>
 			<th>N° de sécurité sociale</th>
@@ -9,12 +21,7 @@
 			<th></th>
 			<th></th>
 		</tr>
-		<tr>
-			<td colspan="6"><button class='btn btn-success btn-sm'
-					ng-click="patientCtrl.add()">
-					<span class='glyphicon glyphicon-plus'></span>
-				</button></td>
-		</tr>
+		
 		<tr ng-repeat="patient in patientCtrl.patients">
 			<td>{{patient.nom}}</td>
 			<td>{{patient.prenom}}</td>

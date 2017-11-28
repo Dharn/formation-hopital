@@ -30,7 +30,7 @@
 					self.listSalleSpecialites();
 				};
 				
-				self.edit = function(){
+				self.edit = function(id){
 					self.patientForm.$setPristine();
 					$http({
 						method : 'GET',
@@ -84,7 +84,7 @@
 					self.formation = null;
 				};
 				
-				self.show = function(){
+				self.show = function(id){
 					$http({
 						method : 'GET', 
 						url : 'api/salles'+id
@@ -95,6 +95,19 @@
 						
 					});
 					
+				};
+				
+				self.trouverParNom = function(nom){
+					
+					$http({
+						method : 'GET',
+						url : 'api/patients/'+nom
+					}).then(function success(response){
+						self.patients = response.data;
+						self.list();
+					}, function error(response){
+						
+					});
 				};
 				
 //				self.listSalleSpecialites = function() {
@@ -110,7 +123,7 @@
 //				};
 				
 				self.list();
-				self.salleSpecialites();
+//				self.salleSpecialites();
 				
 			},
 			controllerAs : patientCtrl
