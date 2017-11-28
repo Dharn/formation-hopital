@@ -6,8 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -22,40 +20,39 @@ public class Patient {
 	
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqPatient")
 	@Id
-	@JsonView(Views.Common.class)
+	@JsonView(Views.Patient.class)
 	private Long id;
 	
 	@Version
 	private int version;
 	
-	@JsonView(Views.Common.class)
+	@JsonView(Views.Patient.class)
 	private String nom;
 	
-	@JsonView(Views.Common.class)
+	@JsonView(Views.Patient.class)
 	private String prenom;
 	
-	@JsonView(Views.Common.class)
+	@JsonView(Views.Patient.class)
 	private String rue;
 	
-	@JsonView(Views.Common.class)
+	@JsonView(Views.Patient.class)
 	private String codePostal;
 	
-	@JsonView(Views.Common.class)
+	@JsonView(Views.Patient.class)
 	private String ville;
 
-	@JsonView(Views.Common.class)
+	@JsonView(Views.Patient.class)
 	private String pays;
 
-	@JsonView(Views.Common.class)
+	@JsonView(Views.Patient.class)
 	private String courriel;
 
-	@JsonView(Views.Common.class)
+	@JsonView(Views.Patient.class)
 	private String telephone;
 
-	@JsonView(Views.Common.class)
+	@JsonView(Views.Patient.class)
 	private String securiteSociale;
 	
-	@JsonView({Views.Patient.class, Views.Consultation.class})
 	@OneToMany (mappedBy = "patient")
 	private List<Consultation> consultations;
 

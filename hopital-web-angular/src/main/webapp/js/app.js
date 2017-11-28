@@ -1,7 +1,16 @@
 (function() {
-	var app = angular.module("hopitalApp", [ "connexion" ,"patient","adminSalle","medecin","adminConsultation",
-		"specialite","medecinConsultation","secretaireConsultation"]);
+	var app = angular.module("hopitalApp", []);
 	
+	app.directive("connexion", function() {
+		return {
+			restrict : 'E',
+			templateUrl : 'mir.html',
+			controller : function() {
+
+			},
+			controllerAs: 'connexionCtrl'
+		};
+	});
 	
 	app.factory('AuthInterceptor', [ function() {
 		return {
