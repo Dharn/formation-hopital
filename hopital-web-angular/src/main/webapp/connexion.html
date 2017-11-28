@@ -8,20 +8,18 @@
 			novalidate>
 
 			<div class="form-group">
-				<label for="electrique">Electrique</label> <input type="radio"
-					class="form-control" style="width: 400px"
-					ng-model="ressourceCtrl.ressource.electrique" value="true" />Oui&nbsp;
-				<input type="radio" class="form-control" style="width: 400px"
-					ng-model="ressourceCtrl.ressource.electrique" value="false" />Non
+				<label for="electrique">Session</label>
+				 <input type="radio" class="form-control" style="width: 400px" ng-model="connexionCtrl" value="ADMIN" />ADMIN
+				 <input type="radio" class="form-control" style="width: 400px" ng-model="connexionCtrl" value="SECRETAIRE" />SECRETAIRE
+				 <input type="radio" class="form-control" style="width: 400px" ng-model="connexionCtrl" value="MEDECIN" />MEDECIN
 			</div>
-
 			<div class="form-group">
-				<label for="nom">Login</label> <input type="text"
+				<label for="login">Login</label> <input type="text"
 					class="form-control" style="width: 400px"
 					ng-model="connexionCtrl.eleve.nom" required />
 			</div>
 			<div class="form-group">
-				<label for="prenom">Mot De Passe</label> <input type="password"
+				<label for="mdp">Mot De Passe</label> <input type="password"
 					class="form-control" style="width: 400px"
 					ng-model="connexionCtrl.eleve.prenom" required />
 			</div>
