@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
 import sopra.hopital.model.Salle;
-import sopra.hopital.model.Views;
 import sopra.hopital.repository.SalleRepository;
 
 @RestController
@@ -26,13 +23,13 @@ public class SalleController {
 	private SalleRepository salleRepo;
 	
 	@GetMapping("/salles")
-	@JsonView(Views.Salle.class)
+	//@JsonView(Views.Salle.class)
 	public ResponseEntity<List<Salle>> findAll() {
 		return new ResponseEntity<List<Salle>>(salleRepo.findAll(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/salles/{id}")
-	@JsonView(Views.Salle.class)
+	//@JsonView(Views.Salle.class)
 	public ResponseEntity<Salle> findOne(@PathVariable("id") Long id) {
 		Salle tmp = salleRepo.findOne(id);
 		if (tmp != null) {
@@ -43,7 +40,7 @@ public class SalleController {
 	}
 	
 	@PostMapping("/salles")
-	@JsonView(Views.Salle.class)
+	//@JsonView(Views.Salle.class)
 	public ResponseEntity<Salle> create(@RequestBody Salle obj) {
 		if (obj.getId() != null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -54,7 +51,7 @@ public class SalleController {
 	}
 	
 	@PutMapping("/salles")
-	@JsonView(Views.Salle.class)
+	//@JsonView(Views.Salle.class)
 	public ResponseEntity<Salle> update(@RequestBody Salle obj) {
 		if (obj.getId() == null) {
 			return create(obj);
@@ -65,7 +62,7 @@ public class SalleController {
 	}
 	
 	@DeleteMapping("/salles/{id}")
-	@JsonView(Views.Salle.class)
+	//@JsonView(Views.Salle.class)
 	public ResponseEntity<Salle> delete(@PathVariable("id") Long id) {
 		Salle tmp = salleRepo.findOne(id);
 		if (tmp == null) {

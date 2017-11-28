@@ -22,11 +22,13 @@ public class Salle {
 	
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqSalle")
 	@Id
+
 	@JsonView(Views.Salle.class)
 	private Long id;
 	
 	@Version
 	private int version;
+
 
 	@OneToMany(mappedBy = "specialite")
 //	@JsonView(Views.Salle.class)

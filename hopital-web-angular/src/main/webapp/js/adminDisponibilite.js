@@ -14,6 +14,8 @@
 								self.disponibilite = null;
 
 								self.ajout = true;
+
+								self.medecins = [];
 								
 								self.medecinlist = [];
 
@@ -43,6 +45,10 @@
 									self.disponibiliteForm.$setPristine();
 									self.disponibilite = {};
 									self.ajout = true;
+									self.listMedecins();
+								};
+
+								self.edit = function(convention, code) {
 									self.listdisponibilites();
 								};
 
@@ -91,7 +97,9 @@
 									$http(
 											{
 												method : 'DELETE',
+
 												url : 'api/disponibilites/' + id
+
 											}).then(function success(response) {
 										self.list();
 									}, function error(response) {
@@ -104,10 +112,24 @@
 									self.disponibilite = null;
 								};
 
+								self.listMedecins = function() {
+									$http(
+											{
+												method : 'GET',
+												url : 'api/medecins/'
+														+ (self.disponibilite.medecin ? self.disponibilite.medecin.id
+														: '')
+											}).then(function success(response) {
+										self.medecins = response.data;
+									}, function error(response) {
+
+									});
+								};
+
 								self.list();
-							
 							},
-							controllerAs : "adminDisponibiliteCtrl"
+							controllerAs : "disponibiliteCtrl"
+
 						};
 					});
 })();
