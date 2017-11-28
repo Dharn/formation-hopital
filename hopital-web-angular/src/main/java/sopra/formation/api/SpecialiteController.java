@@ -25,13 +25,13 @@ public class SpecialiteController {
 	private SpecialiteRepository speRepo;
 	
 	@GetMapping("/specialites")
-	//@JsonView(Views.Eleve.class)
+	//@JsonView(Views.Specialite.class)
 	public ResponseEntity<List<Specialite>> findAll() {
 		return new ResponseEntity<List<Specialite>>(speRepo.findAll(), HttpStatus.OK);
 	}
 
 	@GetMapping("/specialites/{id}")
-	//@JsonView(Views.Eleve.class)
+	//@JsonView(Views.Specialite.class)
 	public ResponseEntity<Specialite> findOne(@PathVariable("id") Integer id) {
 		Specialite tmp = speRepo.findOne(id);
 		if (tmp != null) {
@@ -42,7 +42,7 @@ public class SpecialiteController {
 	}
 
 	@PostMapping("/specialites")
-	//@JsonView(Views.Eleve.class)
+	//@JsonView(Views.Specialite.class)
 	public ResponseEntity<Specialite> create(@RequestBody Specialite obj) {
 		if (obj.getId() != null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -52,8 +52,8 @@ public class SpecialiteController {
 		return new ResponseEntity<>(obj, HttpStatus.CREATED);
 	}
 
-	@PutMapping("/eleves")
-	//@JsonView(Views.Eleve.class)
+	@PutMapping("/specialites")
+	//@JsonView(Views.Specialite.class)
 	public ResponseEntity<Specialite> update(@RequestBody Specialite obj) {
 		if (obj.getId() == null) {
 			return create(obj);
@@ -63,8 +63,8 @@ public class SpecialiteController {
 		return new ResponseEntity<>(obj, HttpStatus.OK);
 	}
 
-	@DeleteMapping("/eleves/{id}")
-	//@JsonView(Views.Eleve.class)
+	@DeleteMapping("/specialites/{id}")
+	//@JsonView(Views.Specialite.class)
 	public ResponseEntity<Specialite> delete(@PathVariable("id") Integer id) {
 		Specialite tmp = speRepo.findOne(id);
 		if (tmp == null) {
