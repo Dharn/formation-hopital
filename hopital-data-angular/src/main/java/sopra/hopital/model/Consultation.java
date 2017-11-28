@@ -23,41 +23,41 @@ import java.util.Date;
 public class Consultation {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqConsultation")
     @Id
-    @JsonView(Views.Consultation.class)
+    @JsonView(Views.Common.class)
     private Integer id;
 	@Version
-	@JsonView(Views.Consultation.class)
+	@JsonView(Views.Common.class)
 	private int version;
 	@Temporal(TemporalType.DATE)
-	@JsonView(Views.Consultation.class)
+	@JsonView(Views.Common.class)
 	private Date dtRendezVous;
-	@JsonView(Views.Consultation.class)
+	@JsonView(Views.Common.class)
 	private Integer duree;
-	@JsonView(Views.Consultation.class)
+	@JsonView(Views.Common.class)
 	private String rapport;
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	@JsonView(Views.Consultation.class)
+	@JsonView(Views.Common.class)
 	private Date dtDemarrage;
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	@JsonView(Views.Consultation.class)
+	@JsonView(Views.Common.class)
 	private Date dtFin;
 	@ManyToOne
 	@JoinColumn(name = "patient_id")
-	@JsonView(Views.Consultation.class)
+	@JsonView(Views.ConsultationPatient.class)
 	private Patient patient;
 	@ManyToOne
 	@JoinColumn(name = "salle_id")
-	@JsonView(Views.Consultation.class)
+	@JsonView(Views.Common.class)
 	private Salle salle;
 	@ManyToOne
 	@JoinColumn(name = "specialite_id")
-	@JsonView(Views.Consultation.class)
+	@JsonView(Views.Common.class)
 	private Specialite specialite;
 	@ManyToOne
 	@JoinColumn(name = "medecin_id")
-	@JsonView(Views.Consultation.class)
+	@JsonView(Views.Common.class)
 	private Medecin medecin;
 	
 	public Consultation(){
