@@ -41,8 +41,8 @@ public class Patient {
 
 	private String securiteSociale;
 	
-	@OneToMany
-	@JoinColumn(name = "consultation_id")
+	@OneToMany (mappedBy = "patient")
+	//@JoinColumn(name = "consultation_id")
 	private List<Consultation> consultations;
 
 	public Long getId() {
