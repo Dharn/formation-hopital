@@ -5,9 +5,6 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
@@ -32,11 +29,11 @@ public class Specialite {
 	@Column(name="intitule")
 	private String intitule;
 	
-	@OneToMany(mappedBy = "module")
+	@OneToMany(mappedBy = "specialite")
 	//@JsonView({Views.SpecialiteWithSalle.class})
 	private List<SalleSpecialite> listeSalleSpecialite;
 	
-	@OneToMany(mappedBy = "module")
+	@OneToMany(mappedBy = "specialite")
 	//@JsonView({Views.SpecialiteWithMedecin.class})
 	private List<MedecinSpecialite> listeMedecinSpecialite;
 	
