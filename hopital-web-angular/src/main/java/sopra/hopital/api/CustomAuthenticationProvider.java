@@ -11,6 +11,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
+import sopra.hopital.model.Role;
 import sopra.hopital.model.Utilisateur;
 import sopra.hopital.repository.UtilisateurRepository;
 
@@ -21,15 +22,35 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-		String name = authentication.getName();
+		String login = authentication.getName();
 		String password = authentication.getCredentials().toString();
 
-		Utilisateur pers = utilisateurRepo.auth(name, password);
+		Utilisateur pers = utilisateurRepo.auth(login, password);
 
+		// si pers est different de null
 		if (pers != null) {
-			List<GrantedAuthority> grantedAuths = new ArrayList<GrantedAuthority>();
-			grantedAuths.add(new SimpleGrantedAuthority("ROLE_USER"));
-			return new UsernamePasswordAuthenticationToken(name, password, grantedAuths);
+
+			// si l'utilisateur est un admin
+			if (pers.getRole().equals(Role.ADMIN)) {
+				List<GrantedAuthority> grantedAuths = new ArrayList<GrantedAuthority>();
+				grantedAuths.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+				return new UsernamePasswordAuthenticationToken(login, password, grantedAuths);
+			}
+
+			// Si l'utilisateur est une secretaire
+			else if (pers.getRole().equals(Role.SECRETAIRE)) {
+				List<GrantedAuthority> grantedAuths = new ArrayList<GrantedAuthority>();
+				grantedAuths.add(new SimpleGrantedAuthority("ROLE_SECRETAIRE"));
+				return new UsernamePasswordAuthenticationToken(login, password, grantedAuths);
+			}
+
+			// si l'utilisateur est un medecin
+			else if (pers.getRole().equals(Role.MEDECIN)) {
+				List<GrantedAuthority> grantedAuths = new ArrayList<GrantedAuthority>();
+				grantedAuths.add(new SimpleGrantedAuthority("ROLE_MEDECIN"));
+				return new UsernamePasswordAuthenticationToken(login, password, grantedAuths);
+
+			}
 		}
 
 		return null;
