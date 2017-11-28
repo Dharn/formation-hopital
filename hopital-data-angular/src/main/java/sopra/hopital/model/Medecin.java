@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
@@ -51,6 +52,8 @@ public class Medecin {
 	@JsonView(Views.Common.class)
 	private Boolean cmu;
 	
+	@ManyToOne
+	@JoinColumn(name = "medecin_id")
 	@JsonView(Views.Common.class)
 	private Secretaire secretaire;
 	
@@ -68,12 +71,9 @@ public class Medecin {
 	@JsonView({Views.Medecin.class, Views.Secretaire.class})
 	private List<Consultation> consultations;
 	
-	@ManyToMany
-	@JoinTable(name = "medecin_specialite", joinColumns = @JoinColumn(name = "medecin_id"), inverseJoinColumns = @JoinColumn(name = "specialite_id"))
+	@OneToMany(mappedBy = "medecin")
 	@JsonView({Views.Medecin.class, Views.Secretaire.class})
 	private List<MedecinSpecialite> medecinSpecialites; 
-	
-	
 
 	public Medecin() {
 		super();

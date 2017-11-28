@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
@@ -26,10 +27,10 @@ public class Salle {
 
 	private String numero;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "specialite")
 	private List<SalleSpecialite> salleSpecialites;
 	
-	@ManyToOne
+	@OneToMany(mappedBy = "salle")
 	private List<Consultation> consultations;
 
 	public Long getId() {

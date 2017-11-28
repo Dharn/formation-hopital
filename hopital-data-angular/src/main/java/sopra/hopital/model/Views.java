@@ -13,6 +13,9 @@ public class Views {
 	public static class Medecin {
 
 	}
+	public static class Utilisateur {
+
+	}
 	
 
 }
