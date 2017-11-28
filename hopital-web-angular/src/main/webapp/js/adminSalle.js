@@ -1,71 +1,71 @@
 (function() {
-	var app = angular.module("salle", []);
+	var app = angular.module("adminSalle", []);
 
 	app.directive("salle", function() {
 		return {
 			restrict : 'E',
-			templateUrl : "salle.html"
+			templateUrl : "salle.html",
 			controller : function($http){
 				var self = this;
-				self.salles=[];
-				self.salle=null;
-					
+				self.patients=[];
+				self.patient=null;
+				
 				self.list = function(){
 					$http({
 						method : 'GET', 
-						url : 'api/salles'
-							
-					}).then(function success(response){
-						self.salles = response.data;
-					}, function error(response){
-							
-					});
+						url : 'api/patients'
 						
-				};
+					}).then(function success(response){
+						self.patients = response.data;
+					}, function error(response){
+						
+					});
 					
+				};
+				
 				self.add = function(){
-					self.salleForm.$setPristine();
-					self.salle = {};
+					self.patientForm.$setPristine();
+					self.patient = {};
 				};
 				
 				self.edit = function(){
-					self.salleForm.$setPristine();
+					self.patientForm.$setPristine();
 					$http({
-						method : 'GET',			
-						url : 'api/salles/'+id
-						}).then(function success(response){
-							self.salle = response.data;
-						}, function error(response){
-							
+						method : 'GET',
+						url : 'api/patients/'+id
+					}).then(function success(response){
+						self.patient = response.data;
+					}, function error(response){
+						
 					});
 				};
 				
 				self.save = function(){
-					if (self.salle.id == null){
+					if (self.patient.id == null){
 						$http({
 							method : 'POST',
-							url : 'api/salles/',
-							data : self.salle
+							url : 'api/patients/',
+							data : self.patient
 						}).then(function success(response){
 							self.list();
 							self.cancel();
 						}, function error (response){
-								
+							
 						});
 					}else{
 						$http({
 							method : 'PUT',
-							url : 'api/salles/',
-							data : self.salle
+							url : 'api/patients/',
+							data : self.patient
 						}).then(function success(response) {
 							self.list();
 							self.cancel();
 						}, function error(response) {
-							
+
 						});
 					}
 				};
-					
+				
 				self.remove = function(id) {
 					$http({
 						method : 'DELETE',
@@ -73,19 +73,20 @@
 					}).then(function success(response) {
 						self.list();
 					}, function error(response) {
-						
+
 					});
 
 				};
-					
+				
 				self.cancel = function() {
 					self.formation = null;
 				};
-					
+				
 				self.list();
-		
+				
+				
 			},
-			controllerAs : salleCtrl
+			controllerAs : patientCtrl
 		};
 	});
 })();
