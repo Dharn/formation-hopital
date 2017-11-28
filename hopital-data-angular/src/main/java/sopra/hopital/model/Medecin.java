@@ -68,8 +68,7 @@ public class Medecin {
 	@JsonView({Views.Medecin.class, Views.Secretaire.class})
 	private List<Consultation> consultations;
 	
-	@ManyToMany
-	@JoinTable(name = "medecin_specialite", joinColumns = @JoinColumn(name = "medecin_id"), inverseJoinColumns = @JoinColumn(name = "specialite_id"))
+	@OneToMany(mappedBy = "medecin")
 	@JsonView({Views.Medecin.class, Views.Secretaire.class})
 	private List<MedecinSpecialite> medecinSpecialites; 
 	
