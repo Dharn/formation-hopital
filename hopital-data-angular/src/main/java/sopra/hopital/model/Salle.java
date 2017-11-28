@@ -16,9 +16,26 @@ public class Salle {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqSalle")
 	@Id
 	private Long id;
-	
-	@Column(name = "numero")
+
 	private String numero;
+
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
 	
 
+	
 }
