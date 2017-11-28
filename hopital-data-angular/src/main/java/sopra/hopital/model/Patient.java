@@ -1,11 +1,15 @@
 package sopra.hopital.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 @Entity
 @SequenceGenerator(name="seqPatient")
@@ -15,6 +19,9 @@ public class Patient {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqPatient")
 	@Id
 	private Long id;
+	
+	@Version
+	private int version;
 	
 	private String nom;
 	
@@ -31,6 +38,9 @@ public class Patient {
 	private String telephone;
 
 	private String securiteSociale;
+	
+	@ManyToOne
+	private List<Consultation> consultations;
 
 	public Long getId() {
 		return id;
@@ -38,6 +48,14 @@ public class Patient {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	public String getNom() {
@@ -104,6 +122,14 @@ public class Patient {
 		this.securiteSociale = securiteSociale;
 	}
 	
+	public List<Consultation> getConsultations() {
+		return consultations;
+	}
+
+	public void setConsultations(List<Consultation> consultations) {
+		this.consultations = consultations;
+	}
+
 	
 	
 	
