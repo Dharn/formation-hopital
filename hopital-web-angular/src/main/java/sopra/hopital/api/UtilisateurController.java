@@ -1,6 +1,6 @@
-package sopra.formation.api;
+package sopra.hopital.api;
 
-import java.util.List;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,27 +13,26 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
-import sopra.hopital.model.Medecin;
-import sopra.hopital.repository.MedecinRepository;
+import sopra.hopital.model.Utilisateur;
+import sopra.hopital.repository.UtilisateurRepository;
 
 @RestController
-public class MedecinController {
+public class UtilisateurController {
+	
 	
 	@Autowired
-	private MedecinRepository medRepo;
+	private UtilisateurRepository utiRepo;
 	
-	@GetMapping("/medecins")
-	//@JsonView(Views.Medecin.class)
-	public ResponseEntity<List<Medecin>> findAll() {
-		return new ResponseEntity<List<Medecin>>(medRepo.findAll(), HttpStatus.OK);
+	@GetMapping("/utilisateurs")
+	//@JsonView(Views.Utilisateur.class)
+	public ResponseEntity<List<Utilisateur>> findAll() {
+		return new ResponseEntity<List<Utilisateur>>(utiRepo.findAll(), HttpStatus.OK);
 	}
 
-	@GetMapping("/medecins/{id}")
-	//@JsonView(Views.Medecin.class)
-	public ResponseEntity<Medecin> findOne(@PathVariable("id") Long id) {
-		Medecin tmp = medRepo.findOne(id);
+	@GetMapping("/utilisateurs/{id}")
+	//@JsonView(Views.Utilisateur.class)
+	public ResponseEntity<Utilisateur> findOne(@PathVariable("id") Long id) {
+		Utilisateur tmp = utiRepo.findOne(id);
 		if (tmp != null) {
 			return new ResponseEntity<>(tmp, HttpStatus.OK);
 		} else {
@@ -41,37 +40,41 @@ public class MedecinController {
 		}
 	}
 
-	@PostMapping("/medecins")
-	//@JsonView(Views.Medecin.class)
-	public ResponseEntity<Medecin> create(@RequestBody Medecin obj) {
+	@PostMapping("/utilisateurs")
+	//@JsonView(Views.Utilisateur.class)
+	public ResponseEntity<Utilisateur> create(@RequestBody Utilisateur obj) {
 		if (obj.getId() != null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		obj = medRepo.save(obj);
+		obj = utiRepo.save(obj);
 
 		return new ResponseEntity<>(obj, HttpStatus.CREATED);
 	}
 
-	@PutMapping("/medecins")
-	//@JsonView(Views.Medecin.class)
-	public ResponseEntity<Medecin> update(@RequestBody Medecin obj) {
+	@PutMapping("/utilisateurs")
+	//@JsonView(Views.Utilisateur.class)
+	public ResponseEntity<Utilisateur> update(@RequestBody Utilisateur obj) {
 		if (obj.getId() == null) {
 			return create(obj);
 		}
-		obj = medRepo.save(obj);
+		obj = utiRepo.save(obj);
 
 		return new ResponseEntity<>(obj, HttpStatus.OK);
 	}
 
-	@DeleteMapping("/medecins/{id}")
-	//@JsonView(Views.Medecin.class)
-	public ResponseEntity<Medecin> delete(@PathVariable("id") Long id) {
-		Medecin tmp = medRepo.findOne(id);
+	@DeleteMapping("/utilisateurs/{id}")
+	//@JsonView(Views.Utilisateur.class)
+	public ResponseEntity<Utilisateur> delete(@PathVariable("id") Long id) {
+		Utilisateur tmp = utiRepo.findOne(id);
 		if (tmp == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
-			medRepo.delete(id);
+			utiRepo.delete(id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 	}
+	
+	
+	
+
 }

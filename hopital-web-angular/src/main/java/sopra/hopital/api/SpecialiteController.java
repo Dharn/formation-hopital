@@ -1,4 +1,4 @@
-package sopra.formation.api;
+package sopra.hopital.api;
 
 import java.util.List;
 
@@ -13,62 +13,64 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import sopra.hopital.model.Salle;
-import sopra.hopital.repository.SalleRepository;
+import com.fasterxml.jackson.annotation.JsonView;
+
+import sopra.hopital.model.Specialite;
+import sopra.hopital.repository.SpecialiteRepository;
 
 @RestController
-public class SalleController {
+public class SpecialiteController {
 
 	@Autowired
-	private SalleRepository salleRepo;
+	private SpecialiteRepository speRepo;
 	
-	@GetMapping("/salles")
-	//@JsonView(Views.Salle.class)
-	public ResponseEntity<List<Salle>> findAll() {
-		return new ResponseEntity<List<Salle>>(salleRepo.findAll(), HttpStatus.OK);
+	@GetMapping("/specialites")
+	//@JsonView(Views.Specialite.class)
+	public ResponseEntity<List<Specialite>> findAll() {
+		return new ResponseEntity<List<Specialite>>(speRepo.findAll(), HttpStatus.OK);
 	}
-	
-	@GetMapping("/salles/{id}")
-	//@JsonView(Views.Salle.class)
-	public ResponseEntity<Salle> findOne(@PathVariable("id") Long id) {
-		Salle tmp = salleRepo.findOne(id);
+
+	@GetMapping("/specialites/{id}")
+	//@JsonView(Views.Specialite.class)
+	public ResponseEntity<Specialite> findOne(@PathVariable("id") Integer id) {
+		Specialite tmp = speRepo.findOne(id);
 		if (tmp != null) {
 			return new ResponseEntity<>(tmp, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
-	
-	@PostMapping("/salles")
-	//@JsonView(Views.Salle.class)
-	public ResponseEntity<Salle> create(@RequestBody Salle obj) {
+
+	@PostMapping("/specialites")
+	//@JsonView(Views.Specialite.class)
+	public ResponseEntity<Specialite> create(@RequestBody Specialite obj) {
 		if (obj.getId() != null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		obj = salleRepo.save(obj);
+		obj = speRepo.save(obj);
 
 		return new ResponseEntity<>(obj, HttpStatus.CREATED);
 	}
-	
-	@PutMapping("/salles")
-	//@JsonView(Views.Salle.class)
-	public ResponseEntity<Salle> update(@RequestBody Salle obj) {
+
+	@PutMapping("/specialites")
+	//@JsonView(Views.Specialite.class)
+	public ResponseEntity<Specialite> update(@RequestBody Specialite obj) {
 		if (obj.getId() == null) {
 			return create(obj);
 		}
-		obj = salleRepo.save(obj);
+		obj = speRepo.save(obj);
 
 		return new ResponseEntity<>(obj, HttpStatus.OK);
 	}
-	
-	@DeleteMapping("/salles/{id}")
-	//@JsonView(Views.Salle.class)
-	public ResponseEntity<Salle> delete(@PathVariable("id") Long id) {
-		Salle tmp = salleRepo.findOne(id);
+
+	@DeleteMapping("/specialites/{id}")
+	//@JsonView(Views.Specialite.class)
+	public ResponseEntity<Specialite> delete(@PathVariable("id") Integer id) {
+		Specialite tmp = speRepo.findOne(id);
 		if (tmp == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
-			salleRepo.delete(id);
+			speRepo.delete(id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 	}

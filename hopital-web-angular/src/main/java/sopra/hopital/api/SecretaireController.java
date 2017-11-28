@@ -1,4 +1,4 @@
-package sopra.formation.api;
+package sopra.hopital.api;
 
 import java.util.List;
 
@@ -13,27 +13,25 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
-import sopra.hopital.model.Specialite;
-import sopra.hopital.repository.SpecialiteRepository;
+import sopra.hopital.model.Secretaire;
+import sopra.hopital.repository.SecretaireRepository;
 
 @RestController
-public class SpecialiteController {
-
-	@Autowired
-	private SpecialiteRepository speRepo;
+public class SecretaireController {
 	
-	@GetMapping("/specialites")
-	//@JsonView(Views.Specialite.class)
-	public ResponseEntity<List<Specialite>> findAll() {
-		return new ResponseEntity<List<Specialite>>(speRepo.findAll(), HttpStatus.OK);
+	@Autowired
+	private SecretaireRepository secretaireRepo;
+	
+	@GetMapping("/secretaires") 
+	//@JsonView(Views.Secretaire.class)
+	public ResponseEntity<List<Secretaire>> findAll() {
+		return new ResponseEntity<List<Secretaire>>(secretaireRepo.findAll(), HttpStatus.OK);
 	}
 
-	@GetMapping("/specialites/{id}")
-	//@JsonView(Views.Specialite.class)
-	public ResponseEntity<Specialite> findOne(@PathVariable("id") Integer id) {
-		Specialite tmp = speRepo.findOne(id);
+	@GetMapping("/secretaires/{id}")
+	//@JsonView(Views.Secretaire.class)
+	public ResponseEntity<Secretaire> findOne(@PathVariable("id") Long id) {
+		Secretaire tmp = secretaireRepo.findOne(id);
 		if (tmp != null) {
 			return new ResponseEntity<>(tmp, HttpStatus.OK);
 		} else {
@@ -41,37 +39,40 @@ public class SpecialiteController {
 		}
 	}
 
-	@PostMapping("/specialites")
-	//@JsonView(Views.Specialite.class)
-	public ResponseEntity<Specialite> create(@RequestBody Specialite obj) {
+	@PostMapping("/secretaires")
+	//@JsonView(Views.Secretaire.class)
+	public ResponseEntity<Secretaire> create(@RequestBody Secretaire obj) {
 		if (obj.getId() != null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		obj = speRepo.save(obj);
+		obj = secretaireRepo.save(obj);
 
 		return new ResponseEntity<>(obj, HttpStatus.CREATED);
 	}
 
-	@PutMapping("/specialites")
-	//@JsonView(Views.Specialite.class)
-	public ResponseEntity<Specialite> update(@RequestBody Specialite obj) {
+	@PutMapping("/secretaires")
+	//@JsonView(Views.Secretaire.class)
+	public ResponseEntity<Secretaire> update(@RequestBody Secretaire obj) {
 		if (obj.getId() == null) {
 			return create(obj);
 		}
-		obj = speRepo.save(obj);
+		obj = secretaireRepo.save(obj);
 
 		return new ResponseEntity<>(obj, HttpStatus.OK);
 	}
 
-	@DeleteMapping("/specialites/{id}")
-	//@JsonView(Views.Specialite.class)
-	public ResponseEntity<Specialite> delete(@PathVariable("id") Integer id) {
-		Specialite tmp = speRepo.findOne(id);
+	@DeleteMapping("/secretaires/{id}")
+	//@JsonView(Views.Secretaire.class)
+	public ResponseEntity<Secretaire> delete(@PathVariable("id") Long id) {
+		Secretaire tmp = secretaireRepo.findOne(id);
 		if (tmp == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
-			speRepo.delete(id);
+			secretaireRepo.delete(id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 	}
+	
+	
+
 }
