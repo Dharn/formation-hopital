@@ -1,4 +1,4 @@
-package sopra.formation.api;
+package sopra.hopital.api;
 
 import java.util.List;
 
@@ -15,25 +15,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import sopra.hopital.model.Specialite;
-import sopra.hopital.repository.SpecialiteRepository;
+import sopra.hopital.model.Medecin;
+import sopra.hopital.repository.MedecinRepository;
 
 @RestController
-public class SpecialiteController {
-
-	@Autowired
-	private SpecialiteRepository speRepo;
+public class MedecinController {
 	
-	@GetMapping("/specialites")
-	//@JsonView(Views.Specialite.class)
-	public ResponseEntity<List<Specialite>> findAll() {
-		return new ResponseEntity<List<Specialite>>(speRepo.findAll(), HttpStatus.OK);
+	@Autowired
+	private MedecinRepository medRepo;
+	
+	@GetMapping("/medecins")
+	//@JsonView(Views.Medecin.class)
+	public ResponseEntity<List<Medecin>> findAll() {
+		return new ResponseEntity<List<Medecin>>(medRepo.findAll(), HttpStatus.OK);
 	}
 
-	@GetMapping("/specialites/{id}")
-	//@JsonView(Views.Specialite.class)
-	public ResponseEntity<Specialite> findOne(@PathVariable("id") Integer id) {
-		Specialite tmp = speRepo.findOne(id);
+	@GetMapping("/medecins/{id}")
+	//@JsonView(Views.Medecin.class)
+	public ResponseEntity<Medecin> findOne(@PathVariable("id") Long id) {
+		Medecin tmp = medRepo.findOne(id);
 		if (tmp != null) {
 			return new ResponseEntity<>(tmp, HttpStatus.OK);
 		} else {
@@ -41,36 +41,36 @@ public class SpecialiteController {
 		}
 	}
 
-	@PostMapping("/specialites")
-	//@JsonView(Views.Specialite.class)
-	public ResponseEntity<Specialite> create(@RequestBody Specialite obj) {
+	@PostMapping("/medecins")
+	//@JsonView(Views.Medecin.class)
+	public ResponseEntity<Medecin> create(@RequestBody Medecin obj) {
 		if (obj.getId() != null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		obj = speRepo.save(obj);
+		obj = medRepo.save(obj);
 
 		return new ResponseEntity<>(obj, HttpStatus.CREATED);
 	}
 
-	@PutMapping("/specialites")
-	//@JsonView(Views.Specialite.class)
-	public ResponseEntity<Specialite> update(@RequestBody Specialite obj) {
+	@PutMapping("/medecins")
+	//@JsonView(Views.Medecin.class)
+	public ResponseEntity<Medecin> update(@RequestBody Medecin obj) {
 		if (obj.getId() == null) {
 			return create(obj);
 		}
-		obj = speRepo.save(obj);
+		obj = medRepo.save(obj);
 
 		return new ResponseEntity<>(obj, HttpStatus.OK);
 	}
 
-	@DeleteMapping("/specialites/{id}")
-	//@JsonView(Views.Specialite.class)
-	public ResponseEntity<Specialite> delete(@PathVariable("id") Integer id) {
-		Specialite tmp = speRepo.findOne(id);
+	@DeleteMapping("/medecins/{id}")
+	//@JsonView(Views.Medecin.class)
+	public ResponseEntity<Medecin> delete(@PathVariable("id") Long id) {
+		Medecin tmp = medRepo.findOne(id);
 		if (tmp == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
-			speRepo.delete(id);
+			medRepo.delete(id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 	}

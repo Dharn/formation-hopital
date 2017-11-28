@@ -1,4 +1,4 @@
-package sopra.formation.api;
+package sopra.hopital.api;
 
 import java.util.List;
 
@@ -13,64 +13,62 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import sopra.hopital.model.Patient;
-import sopra.hopital.model.Specialite;
-import sopra.hopital.repository.PatientRepository;
-import sopra.hopital.repository.SpecialiteRepository;
+import sopra.hopital.model.Salle;
+import sopra.hopital.repository.SalleRepository;
 
 @RestController
-public class PatientController {
+public class SalleController {
 
 	@Autowired
-	private PatientRepository patientRepo;
+	private SalleRepository salleRepo;
 	
-	@GetMapping("/patients")
-	//@JsonView(Views.Patient.class)
-	public ResponseEntity<List<Patient>> findAll() {
-		return new ResponseEntity<List<Patient>>(patientRepo.findAll(), HttpStatus.OK);
+	@GetMapping("/salles")
+	//@JsonView(Views.Salle.class)
+	public ResponseEntity<List<Salle>> findAll() {
+		return new ResponseEntity<List<Salle>>(salleRepo.findAll(), HttpStatus.OK);
 	}
-
-	@GetMapping("/patients/{id}")
-	//@JsonView(Views.Patient.class)
-	public ResponseEntity<Patient> findOne(@PathVariable("id") Long id) {
-		Patient tmp = patientRepo.findOne(id);
+	
+	@GetMapping("/salles/{id}")
+	//@JsonView(Views.Salle.class)
+	public ResponseEntity<Salle> findOne(@PathVariable("id") Long id) {
+		Salle tmp = salleRepo.findOne(id);
 		if (tmp != null) {
 			return new ResponseEntity<>(tmp, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
-
-	@PostMapping("/patients")
-	//@JsonView(Views.Patient.class)
-	public ResponseEntity<Patient> create(@RequestBody Patient obj) {
+	
+	@PostMapping("/salles")
+	//@JsonView(Views.Salle.class)
+	public ResponseEntity<Salle> create(@RequestBody Salle obj) {
 		if (obj.getId() != null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		obj = patientRepo.save(obj);
+		obj = salleRepo.save(obj);
 
 		return new ResponseEntity<>(obj, HttpStatus.CREATED);
 	}
-
-	@PutMapping("/patients")
-	//@JsonView(Views.Patient.class)
-	public ResponseEntity<Patient> update(@RequestBody Patient obj) {
+	
+	@PutMapping("/salles")
+	//@JsonView(Views.Salle.class)
+	public ResponseEntity<Salle> update(@RequestBody Salle obj) {
 		if (obj.getId() == null) {
 			return create(obj);
 		}
-		obj = patientRepo.save(obj);
+		obj = salleRepo.save(obj);
 
 		return new ResponseEntity<>(obj, HttpStatus.OK);
 	}
-
-	@DeleteMapping("/patients/{id}")
-	//@JsonView(Views.Patient.class)
-	public ResponseEntity<Patient> delete(@PathVariable("id") Long id) {
-		Patient tmp = patientRepo.findOne(id);
+	
+	@DeleteMapping("/salles/{id}")
+	//@JsonView(Views.Salle.class)
+	public ResponseEntity<Salle> delete(@PathVariable("id") Long id) {
+		Salle tmp = salleRepo.findOne(id);
 		if (tmp == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
-			patientRepo.delete(id);
+			salleRepo.delete(id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 	}
