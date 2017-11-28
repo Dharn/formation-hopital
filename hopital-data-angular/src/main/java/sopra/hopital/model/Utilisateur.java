@@ -55,6 +55,14 @@ public class Utilisateur {
 	
 
 	
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
 	public Utilisateur() {
 		super();
 	}
