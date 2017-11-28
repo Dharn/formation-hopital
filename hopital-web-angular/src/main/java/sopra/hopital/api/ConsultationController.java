@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import sopra.hopital.model.Consultation;
-import sopra.hopital.model.Views;
 import sopra.hopital.repository.ConsultationRepository;
 
 @RestController
@@ -26,13 +25,13 @@ public class ConsultationController {
 	private ConsultationRepository consultationRepo;
 	
 	@GetMapping("/consultations")
-	@JsonView(Views.Consultation.class)
+	//@JsonView(Views.Consultation.class)
 	public ResponseEntity<List<Consultation>> findAll() {
 		return new ResponseEntity<List<Consultation>>(consultationRepo.findAllWithPatient(), HttpStatus.OK);
 	}
 
 	@GetMapping("/consultations/{id}")
-	@JsonView(Views.Consultation.class)
+	//@JsonView(Views.Consultation.class)
 	public ResponseEntity<Consultation> findOne(@PathVariable("id") Long id) {
 		Consultation tmp = consultationRepo.findOne(id);
 		if (tmp != null) {
@@ -43,7 +42,7 @@ public class ConsultationController {
 	}
 
 	@PostMapping("/consultations")
-	@JsonView(Views.Consultation.class)
+	//@JsonView(Views.Consultation.class)
 	public ResponseEntity<Consultation> create(@RequestBody Consultation obj) {
 		if (obj.getId() != null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -54,7 +53,7 @@ public class ConsultationController {
 	}
 
 	@PutMapping("/consultations")
-	@JsonView(Views.Consultation.class)
+	//@JsonView(Views.Consultation.class)
 	public ResponseEntity<Consultation> update(@RequestBody Consultation obj) {
 		if (obj.getId() == null) {
 			return create(obj);
@@ -65,7 +64,7 @@ public class ConsultationController {
 	}
 
 	@DeleteMapping("/consultations/{id}")
-	@JsonView(Views.Consultation.class)
+	//@JsonView(Views.Consultation.class)
 	public ResponseEntity<Consultation> delete(@PathVariable("id") Long id) {
 		Consultation tmp = consultationRepo.findOne(id);
 		if (tmp == null) {

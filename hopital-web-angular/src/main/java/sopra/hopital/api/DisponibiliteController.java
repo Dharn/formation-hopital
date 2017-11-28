@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
 import sopra.hopital.model.Disponibilite;
-import sopra.hopital.model.Views;
 import sopra.hopital.repository.DisponibiliteRepository;
 
 @RestController
@@ -28,13 +25,13 @@ public class DisponibiliteController {
 	
 	
 	@GetMapping("/disponibilites")
-	@JsonView(Views.Disponibilite.class)
+	//@JsonView(Views.Disponibilite.class)
 	public ResponseEntity<List<Disponibilite>> findAll() {
 		return new ResponseEntity<List<Disponibilite>>(dispoRepo.findAll(), HttpStatus.OK);
 	}
 
 	@GetMapping("/disponibilites/{id}")
-	@JsonView(Views.Disponibilite.class)
+	//@JsonView(Views.Disponibilite.class)
 	public ResponseEntity<Disponibilite> findOne(@PathVariable("id") Long id) {
 		Disponibilite tmp = dispoRepo.findOne(id);
 		if (tmp != null) {
@@ -45,7 +42,7 @@ public class DisponibiliteController {
 	}
 
 	@PostMapping("/disponibilites")
-	@JsonView(Views.Disponibilite.class)
+	//@JsonView(Views.Disponibilite.class)
 	public ResponseEntity<Disponibilite> create(@RequestBody Disponibilite obj) {
 		if (obj.getId() != null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -56,7 +53,7 @@ public class DisponibiliteController {
 	}
 
 	@PutMapping("/disponibilites")
-	@JsonView(Views.Disponibilite.class)
+	//@JsonView(Views.Disponibilite.class)
 	public ResponseEntity<Disponibilite> update(@RequestBody Disponibilite obj) {
 		if (obj.getId() == null) {
 			return create(obj);
@@ -67,7 +64,7 @@ public class DisponibiliteController {
 	}
 
 	@DeleteMapping("/disponibilites/{id}")
-	@JsonView(Views.Disponibilite.class)
+	//@JsonView(Views.Disponibilite.class)
 	public ResponseEntity<Disponibilite> delete(@PathVariable("id") Long id) {
 		Disponibilite tmp = dispoRepo.findOne(id);
 		if (tmp == null) {

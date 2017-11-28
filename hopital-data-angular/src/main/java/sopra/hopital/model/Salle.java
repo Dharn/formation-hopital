@@ -13,8 +13,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
 @Entity
 @SequenceGenerator(name="seqSalle")
 @Table(name = "salle")
@@ -22,21 +20,17 @@ public class Salle {
 	
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqSalle")
 	@Id
-	@JsonView(Views.Common.class)
 	private Long id;
 	
 	@Version
 	private int version;
 
-	@JsonView(Views.Common.class)
 	private String numero;
 	
 	@OneToMany(mappedBy = "specialite")
-	@JsonView({Views.Specialite.class, Views.Salle.class})
 	private List<SalleSpecialite> salleSpecialites;
 	
 	@OneToMany(mappedBy = "salle")
-	@JsonView({Views.Salle.class, Views.Consultation.class})
 	private List<Consultation> consultations;
 
 	public Long getId() {
