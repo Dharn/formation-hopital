@@ -1,0 +1,36 @@
+<meta charset="UTF-8">
+
+<div class="w3-sidebar w3-bar-block" style="width:25%">
+
+	<div class="panel panel-default" style="margin-top: 20px"
+		ng-show="disponibiliteCtrl.disponibilite">
+		<div class="panel-heading">Edition de la disponibilité</div>
+		<div class="panel-body">
+			<form name="disponibiliteCtrl.disponibiliteForm"
+				ng-submit="disponibiliteCtrl.disponibiliteForm.$valid && disponibiliteCtrl.save()" novalidate>
+				<input type="hidden" ng-model="disponibiliteCtrl.disponibilite.version" />
+				<input type="hidden" ng-model="disponibiliteCtrl.disponibilite.id" />
+				<div class="form-group">
+					<label for="dtDebut">Date et heure de début</label> <input type="datetime"
+						class="form-control" style="width: 200px"
+						ng-model="disponibiliteCtrl.disponibilite.dtDebut" required />
+				</div>
+				<div class="form-group">
+					<label for="dtFin">Date et heure de fin</label> <input type="datetime"
+						class="form-control" style="width: 200px"
+						ng-model="disponibiliteCtrl.disponibilite.dtFin" />
+				</div>
+				<button class="btn btn-success" type="submit">
+					<span class="glyphicon glyphicon-ok"></span>
+				</button>
+				<button class="btn btn-warning" ng-click="disponibiliteCtrl.cancel()">
+					<span class="glyphicon glyphicon-arrow-left"></span>
+				</button>
+				<button class='btn btn-danger btn-sm'ng-click="specialiteCtrl.remove(specialite.id)">
+					<span class='glyphicon glyphicon-trash'></span>
+				</button>
+			</form>
+		</div>
+	</div>
+</div>
+

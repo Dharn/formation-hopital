@@ -10,11 +10,13 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.stereotype.Component;
 
 import sopra.hopital.model.Role;
 import sopra.hopital.model.Utilisateur;
 import sopra.hopital.repository.UtilisateurRepository;
 
+@Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 	@Autowired

@@ -1,0 +1,81 @@
+<meta charset="UTF-8">
+<div>
+	<table class="table">
+		<tr>
+			<th>Nom</th>
+			<th>Prenom</th>
+			<th>Convention</th>
+			<th>Carte Vitale</th>
+			<th>CMU</th>
+			<th></th>
+			<th></th>
+		</tr>
+		<tr ng-repeat="medecin in medecinCtrl.medecins">
+			<td>{{medecin.nom}}</td>
+			<td>{{medecin.prenom}}</td>
+			<td>{{medecin.convention}}</td>
+			<td>{{medecin.carteVitale}}</td>
+			<td>{{medecin.cmu}}</td>
+
+			<td><button class='btn btn-success btn-sm'
+					ng-click="medecinCtrl.edit(medecin.id)">
+					<span class='glyphicon glyphicon-pencil'></span>
+				</button></td>
+			<td><button class='btn btn-danger btn-sm'
+					ng-click="medecinCtrl.remove(medecin.id)">
+					<span class='glyphicon glyphicon-trash'></span>
+				</button></td>
+		</tr>
+		<tr>
+			<td colspan="5"><button class='btn btn-success btn-sm'
+					ng-click="medecinCtrl.add()">
+					<span class='glyphicon glyphicon-plus'></span>
+				</button></td>
+		</tr>
+	</table>
+	
+	<div class="panel panel-default" style="margin-top: 20px"
+		ng-show="medecinCtrl.medecin">
+		<div class="panel-heading">Edition du médecin</div>
+		<div class="panel-body">
+			<form name="medecinCtrl.medecinForm"
+				ng-submit="medecinCtrl.medecinForm.$valid && medecinCtrl.save()" novalidate>
+				<input type="hidden" ng-model="medecinCtrl.medecin.version" />
+				<input type="hidden" ng-model="medecinCtrl.medecin.id" />
+				<div class="form-group">
+					<label for="nom">Nom</label> <input type="text" ng-readonly="!medecinCtrl.ajout"
+						class="form-control" style="width: 400px"
+						ng-model="medecinCtrl.medecin.nom" required />
+				</div>
+				<div class="form-group">
+					<label for="prenom">Prenom</label> <input type="text" ng-readonly="!medecinCtrl.ajout
+						class="form-control" style="width: 400px"
+						ng-model="medecinCtrl.medecin.prenom" />
+				</div>
+				<div class="form-group">
+					<label for="convention">Convention</label> 
+					<select class="form-control" style="width: 400px"
+						ng-model="medecinCtrl.medecin.id.convention" required>
+						<option ng-repeat="type in medecinCtrl.conventions" value="{{convention}}">{{conventions}}</option>	
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="carteVitale">Accepte la carte vitale</label> 
+					<input type="radio" class="form-control" style="width: 200px" ng-model="medecinCtrl.medecin.carteVitale" value="true"/>Oui&nbsp;
+					<input type="radio" class="form-control" style="width: 200px" ng-model="medecinCtrl.medecin.carteVitale" value="false"/>Non
+				</div>
+				<div class="form-group">
+					<label for="cmu">Accepte la CMU</label> 
+					<input type="radio" class="form-control" style="width: 200px" ng-model="medecinCtrl.medecin.cmu" value="true"/>Oui&nbsp;
+					<input type="radio" class="form-control" style="width: 200px" ng-model="medecinCtrl.medecin.cmu" value="false"/>Non
+				</div>
+				<button class="btn btn-success" type="submit">
+					<span class="glyphicon glyphicon-ok"></span>
+				</button>
+				<button class="btn btn-warning" ng-click="medecinCtrl.cancel()">
+					<span class="glyphicon glyphicon-arrow-left"></span>
+				</button>
+			</form>
+		</div>
+	</div>
+</div>
